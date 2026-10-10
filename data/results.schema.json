@@ -1,0 +1,312 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": "1.0"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "document_id": {
+                "type": "string"
+              },
+              "document_type": {
+                "const": "study_certificate"
+              },
+              "fields": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "student_name": {
+                    "type": "string"
+                  },
+                  "university": {
+                    "type": "string"
+                  },
+                  "program": {
+                    "type": "string"
+                  },
+                  "study_form": {
+                    "type": "string"
+                  },
+                  "study_start": {
+                    "type": "string"
+                  },
+                  "study_end": {
+                    "type": "string"
+                  },
+                  "document_number": {
+                    "type": "string"
+                  },
+                  "issue_date": {
+                    "type": "string"
+                  },
+                  "signature_present": {
+                    "type": "boolean"
+                  },
+                  "seal_present": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "student_name",
+                  "university",
+                  "program",
+                  "study_form",
+                  "study_start",
+                  "study_end",
+                  "document_number",
+                  "issue_date",
+                  "signature_present",
+                  "seal_present"
+                ]
+              },
+              "validation": {
+                "$ref": "#/$defs/validation"
+              },
+              "answers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/answer"
+                }
+              }
+            },
+            "required": [
+              "document_id",
+              "document_type",
+              "fields",
+              "validation",
+              "answers"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "document_id": {
+                "type": "string"
+              },
+              "document_type": {
+                "const": "academic_leave_application"
+              },
+              "fields": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "student_name": {
+                    "type": "string"
+                  },
+                  "group": {
+                    "type": "string"
+                  },
+                  "course": {
+                    "type": "string"
+                  },
+                  "leave_reason": {
+                    "type": "string"
+                  },
+                  "leave_start": {
+                    "type": "string"
+                  },
+                  "leave_end": {
+                    "type": "string"
+                  },
+                  "application_date": {
+                    "type": "string"
+                  },
+                  "signature_present": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "student_name",
+                  "group",
+                  "course",
+                  "leave_reason",
+                  "leave_start",
+                  "leave_end",
+                  "application_date",
+                  "signature_present"
+                ]
+              },
+              "validation": {
+                "$ref": "#/$defs/validation"
+              },
+              "answers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/answer"
+                }
+              }
+            },
+            "required": [
+              "document_id",
+              "document_type",
+              "fields",
+              "validation",
+              "answers"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "document_id": {
+                "type": "string"
+              },
+              "document_type": {
+                "const": "internship_certificate"
+              },
+              "fields": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "student_name": {
+                    "type": "string"
+                  },
+                  "organization": {
+                    "type": "string"
+                  },
+                  "internship_start": {
+                    "type": "string"
+                  },
+                  "internship_end": {
+                    "type": "string"
+                  },
+                  "supervisor_name": {
+                    "type": "string"
+                  },
+                  "grade": {
+                    "type": "string"
+                  },
+                  "document_number": {
+                    "type": "string"
+                  },
+                  "issue_date": {
+                    "type": "string"
+                  },
+                  "signature_present": {
+                    "type": "boolean"
+                  },
+                  "seal_present": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "student_name",
+                  "organization",
+                  "internship_start",
+                  "internship_end",
+                  "supervisor_name",
+                  "grade",
+                  "document_number",
+                  "issue_date",
+                  "signature_present",
+                  "seal_present"
+                ]
+              },
+              "validation": {
+                "$ref": "#/$defs/validation"
+              },
+              "answers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/answer"
+                }
+              }
+            },
+            "required": [
+              "document_id",
+              "document_type",
+              "fields",
+              "validation",
+              "answers"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "version",
+    "documents"
+  ],
+  "$defs": {
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "document_ok",
+            "missing_fields"
+          ]
+        },
+        "missing_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^rule:[0-9]+[.][0-9]+$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "status",
+        "missing_fields",
+        "sources"
+      ]
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "question_id": {
+          "type": "string"
+        },
+        "answerable": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(rule:[0-9]+[.][0-9]+|field:[a-z_]+)$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "question_id",
+        "answerable",
+        "value",
+        "answer",
+        "sources"
+      ]
+    }
+  }
+}

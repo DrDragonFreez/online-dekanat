@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Виртуальное окружение
+.venv/
+venv/
+env/
+ENV/
+
+# PyCharm / IDE
+.idea/
+.vscode/
+*.iml
+
+# ENV и секреты
+.env
+.env.local
+
+# Данные и артефакты
+data/uploads/*
+!data/uploads/.gitkeep
+results/*.json
+!results/.gitkeep
+
+# ОС
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Jupyter
+.ipynb_checkpoints/

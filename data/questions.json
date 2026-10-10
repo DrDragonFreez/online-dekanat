@@ -1,0 +1,602 @@
+[
+  {
+    "question_id": "open-001-Q1",
+    "document_id": "open-001",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-001-Q2",
+    "document_id": "open-001",
+    "question": "Укажи значение поля «ФИО студента»."
+  },
+  {
+    "question_id": "open-001-Q3",
+    "document_id": "open-001",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-001-Q4",
+    "document_id": "open-001",
+    "question": "Какова стоимость обучения за следующий семестр?"
+  },
+  {
+    "question_id": "open-002-Q1",
+    "document_id": "open-002",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-002-Q2",
+    "document_id": "open-002",
+    "question": "Укажи значение поля «Дата выдачи»."
+  },
+  {
+    "question_id": "open-002-Q3",
+    "document_id": "open-002",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-002-Q4",
+    "document_id": "open-002",
+    "question": "Какой размер стипендии положен студенту?"
+  },
+  {
+    "question_id": "open-003-Q1",
+    "document_id": "open-003",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-003-Q2",
+    "document_id": "open-003",
+    "question": "Укажи значение поля «Направление подготовки»."
+  },
+  {
+    "question_id": "open-003-Q3",
+    "document_id": "open-003",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-003-Q4",
+    "document_id": "open-003",
+    "question": "Какой срок рассмотрения документа деканатом?"
+  },
+  {
+    "question_id": "open-004-Q1",
+    "document_id": "open-004",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-004-Q2",
+    "document_id": "open-004",
+    "question": "Укажи значение поля «Форма обучения»."
+  },
+  {
+    "question_id": "open-004-Q3",
+    "document_id": "open-004",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-004-Q4",
+    "document_id": "open-004",
+    "question": "По какому номеру телефона можно связаться с деканатом?"
+  },
+  {
+    "question_id": "open-005-Q1",
+    "document_id": "open-005",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-005-Q2",
+    "document_id": "open-005",
+    "question": "Укажи значение поля «ФИО студента»."
+  },
+  {
+    "question_id": "open-005-Q3",
+    "document_id": "open-005",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-005-Q4",
+    "document_id": "open-005",
+    "question": "В каком кабинете принимают оригиналы документов?"
+  },
+  {
+    "question_id": "open-006-Q1",
+    "document_id": "open-006",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-006-Q2",
+    "document_id": "open-006",
+    "question": "Укажи значение поля «Название вуза»."
+  },
+  {
+    "question_id": "open-006-Q3",
+    "document_id": "open-006",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-006-Q4",
+    "document_id": "open-006",
+    "question": "Какова стоимость обучения за следующий семестр?"
+  },
+  {
+    "question_id": "open-007-Q1",
+    "document_id": "open-007",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-007-Q2",
+    "document_id": "open-007",
+    "question": "Укажи значение поля «Направление подготовки»."
+  },
+  {
+    "question_id": "open-007-Q3",
+    "document_id": "open-007",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-007-Q4",
+    "document_id": "open-007",
+    "question": "Какой размер стипендии положен студенту?"
+  },
+  {
+    "question_id": "open-008-Q1",
+    "document_id": "open-008",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-008-Q2",
+    "document_id": "open-008",
+    "question": "Укажи значение поля «Дата выдачи»."
+  },
+  {
+    "question_id": "open-008-Q3",
+    "document_id": "open-008",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-008-Q4",
+    "document_id": "open-008",
+    "question": "Какой срок рассмотрения документа деканатом?"
+  },
+  {
+    "question_id": "open-009-Q1",
+    "document_id": "open-009",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-009-Q2",
+    "document_id": "open-009",
+    "question": "Укажи значение поля «Окончание периода обучения»."
+  },
+  {
+    "question_id": "open-009-Q3",
+    "document_id": "open-009",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-009-Q4",
+    "document_id": "open-009",
+    "question": "По какому номеру телефона можно связаться с деканатом?"
+  },
+  {
+    "question_id": "open-010-Q1",
+    "document_id": "open-010",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-010-Q2",
+    "document_id": "open-010",
+    "question": "Укажи значение поля «Название вуза»."
+  },
+  {
+    "question_id": "open-010-Q3",
+    "document_id": "open-010",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-010-Q4",
+    "document_id": "open-010",
+    "question": "В каком кабинете принимают оригиналы документов?"
+  },
+  {
+    "question_id": "open-011-Q1",
+    "document_id": "open-011",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-011-Q2",
+    "document_id": "open-011",
+    "question": "Укажи значение поля «Учебная группа»."
+  },
+  {
+    "question_id": "open-011-Q3",
+    "document_id": "open-011",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-011-Q4",
+    "document_id": "open-011",
+    "question": "Какой размер стипендии положен студенту?"
+  },
+  {
+    "question_id": "open-012-Q1",
+    "document_id": "open-012",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-012-Q2",
+    "document_id": "open-012",
+    "question": "Укажи значение поля «Дата заявления»."
+  },
+  {
+    "question_id": "open-012-Q3",
+    "document_id": "open-012",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-012-Q4",
+    "document_id": "open-012",
+    "question": "Какой срок рассмотрения документа деканатом?"
+  },
+  {
+    "question_id": "open-013-Q1",
+    "document_id": "open-013",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-013-Q2",
+    "document_id": "open-013",
+    "question": "Укажи значение поля «Причина отпуска»."
+  },
+  {
+    "question_id": "open-013-Q3",
+    "document_id": "open-013",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-013-Q4",
+    "document_id": "open-013",
+    "question": "По какому номеру телефона можно связаться с деканатом?"
+  },
+  {
+    "question_id": "open-014-Q1",
+    "document_id": "open-014",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-014-Q2",
+    "document_id": "open-014",
+    "question": "Укажи значение поля «Причина отпуска»."
+  },
+  {
+    "question_id": "open-014-Q3",
+    "document_id": "open-014",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-014-Q4",
+    "document_id": "open-014",
+    "question": "В каком кабинете принимают оригиналы документов?"
+  },
+  {
+    "question_id": "open-015-Q1",
+    "document_id": "open-015",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-015-Q2",
+    "document_id": "open-015",
+    "question": "Укажи значение поля «ФИО студента»."
+  },
+  {
+    "question_id": "open-015-Q3",
+    "document_id": "open-015",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-015-Q4",
+    "document_id": "open-015",
+    "question": "Какова стоимость обучения за следующий семестр?"
+  },
+  {
+    "question_id": "open-016-Q1",
+    "document_id": "open-016",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-016-Q2",
+    "document_id": "open-016",
+    "question": "Укажи значение поля «Учебная группа»."
+  },
+  {
+    "question_id": "open-016-Q3",
+    "document_id": "open-016",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-016-Q4",
+    "document_id": "open-016",
+    "question": "Какой размер стипендии положен студенту?"
+  },
+  {
+    "question_id": "open-017-Q1",
+    "document_id": "open-017",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-017-Q2",
+    "document_id": "open-017",
+    "question": "Укажи значение поля «Дата начала отпуска»."
+  },
+  {
+    "question_id": "open-017-Q3",
+    "document_id": "open-017",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-017-Q4",
+    "document_id": "open-017",
+    "question": "Какой срок рассмотрения документа деканатом?"
+  },
+  {
+    "question_id": "open-018-Q1",
+    "document_id": "open-018",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-018-Q2",
+    "document_id": "open-018",
+    "question": "Укажи значение поля «Учебная группа»."
+  },
+  {
+    "question_id": "open-018-Q3",
+    "document_id": "open-018",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-018-Q4",
+    "document_id": "open-018",
+    "question": "По какому номеру телефона можно связаться с деканатом?"
+  },
+  {
+    "question_id": "open-019-Q1",
+    "document_id": "open-019",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-019-Q2",
+    "document_id": "open-019",
+    "question": "Укажи значение поля «Дата окончания отпуска»."
+  },
+  {
+    "question_id": "open-019-Q3",
+    "document_id": "open-019",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-019-Q4",
+    "document_id": "open-019",
+    "question": "В каком кабинете принимают оригиналы документов?"
+  },
+  {
+    "question_id": "open-020-Q1",
+    "document_id": "open-020",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-020-Q2",
+    "document_id": "open-020",
+    "question": "Укажи значение поля «Учебная группа»."
+  },
+  {
+    "question_id": "open-020-Q3",
+    "document_id": "open-020",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-020-Q4",
+    "document_id": "open-020",
+    "question": "Какова стоимость обучения за следующий семестр?"
+  },
+  {
+    "question_id": "open-021-Q1",
+    "document_id": "open-021",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-021-Q2",
+    "document_id": "open-021",
+    "question": "Укажи значение поля «Дата начала практики»."
+  },
+  {
+    "question_id": "open-021-Q3",
+    "document_id": "open-021",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-021-Q4",
+    "document_id": "open-021",
+    "question": "Какой срок рассмотрения документа деканатом?"
+  },
+  {
+    "question_id": "open-022-Q1",
+    "document_id": "open-022",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-022-Q2",
+    "document_id": "open-022",
+    "question": "Укажи значение поля «Дата выдачи»."
+  },
+  {
+    "question_id": "open-022-Q3",
+    "document_id": "open-022",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-022-Q4",
+    "document_id": "open-022",
+    "question": "По какому номеру телефона можно связаться с деканатом?"
+  },
+  {
+    "question_id": "open-023-Q1",
+    "document_id": "open-023",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-023-Q2",
+    "document_id": "open-023",
+    "question": "Укажи значение поля «ФИО руководителя практики»."
+  },
+  {
+    "question_id": "open-023-Q3",
+    "document_id": "open-023",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-023-Q4",
+    "document_id": "open-023",
+    "question": "В каком кабинете принимают оригиналы документов?"
+  },
+  {
+    "question_id": "open-024-Q1",
+    "document_id": "open-024",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-024-Q2",
+    "document_id": "open-024",
+    "question": "Укажи значение поля «Оценка»."
+  },
+  {
+    "question_id": "open-024-Q3",
+    "document_id": "open-024",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-024-Q4",
+    "document_id": "open-024",
+    "question": "Какова стоимость обучения за следующий семестр?"
+  },
+  {
+    "question_id": "open-025-Q1",
+    "document_id": "open-025",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-025-Q2",
+    "document_id": "open-025",
+    "question": "Укажи значение поля «ФИО студента»."
+  },
+  {
+    "question_id": "open-025-Q3",
+    "document_id": "open-025",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-025-Q4",
+    "document_id": "open-025",
+    "question": "Какой размер стипендии положен студенту?"
+  },
+  {
+    "question_id": "open-026-Q1",
+    "document_id": "open-026",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-026-Q2",
+    "document_id": "open-026",
+    "question": "Укажи значение поля «Название организации»."
+  },
+  {
+    "question_id": "open-026-Q3",
+    "document_id": "open-026",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-026-Q4",
+    "document_id": "open-026",
+    "question": "Какой срок рассмотрения документа деканатом?"
+  },
+  {
+    "question_id": "open-027-Q1",
+    "document_id": "open-027",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-027-Q2",
+    "document_id": "open-027",
+    "question": "Укажи значение поля «ФИО руководителя практики»."
+  },
+  {
+    "question_id": "open-027-Q3",
+    "document_id": "open-027",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-027-Q4",
+    "document_id": "open-027",
+    "question": "По какому номеру телефона можно связаться с деканатом?"
+  },
+  {
+    "question_id": "open-028-Q1",
+    "document_id": "open-028",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-028-Q2",
+    "document_id": "open-028",
+    "question": "Укажи значение поля «Название организации»."
+  },
+  {
+    "question_id": "open-028-Q3",
+    "document_id": "open-028",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-028-Q4",
+    "document_id": "open-028",
+    "question": "В каком кабинете принимают оригиналы документов?"
+  },
+  {
+    "question_id": "open-029-Q1",
+    "document_id": "open-029",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-029-Q2",
+    "document_id": "open-029",
+    "question": "Укажи значение поля «Дата окончания практики»."
+  },
+  {
+    "question_id": "open-029-Q3",
+    "document_id": "open-029",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-029-Q4",
+    "document_id": "open-029",
+    "question": "Какова стоимость обучения за следующий семестр?"
+  },
+  {
+    "question_id": "open-030-Q1",
+    "document_id": "open-030",
+    "question": "Содержит ли документ все обязательные сведения по Положению?"
+  },
+  {
+    "question_id": "open-030-Q2",
+    "document_id": "open-030",
+    "question": "Укажи значение поля «Дата окончания практики»."
+  },
+  {
+    "question_id": "open-030-Q3",
+    "document_id": "open-030",
+    "question": "Кто принимает окончательное решение о принятии документа?"
+  },
+  {
+    "question_id": "open-030-Q4",
+    "document_id": "open-030",
+    "question": "Какой размер стипендии положен студенту?"
+  }
+]

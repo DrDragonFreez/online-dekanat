@@ -1,5 +1,4 @@
 import re
-
 ANCHORS = {
     "study_certificate": [
         r"СПРАВКА\s+ОБ\s+ОБУЧЕНИЕ"
@@ -14,7 +13,6 @@ ANCHORS = {
         r"Сведения\s+о\s+практике",
     ],
 }
-
 def classify(text: str) -> str:
     scores = {k: 0 for k in ANCHORS}
     for dtype, pats in ANCHORS.items():

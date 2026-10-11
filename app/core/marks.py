@@ -1,23 +1,15 @@
 from pathlib import Path
 import cv2
 import numpy as np
-def detect_marks_pdf(images: list, page_w: float, page_h: float):
-    sig, seal = False, False
-    for img in images:
-        x0 = float(img.get("x0", 0))
-        x1 = float(img.get("x1", 0))
-        if x1 <= x0:
-            continue
-        cx = (x0 + x1) / 2.0
-        rel = cx / page_w if page_w else 0.5
-        if rel >= 0.6:
-            seal = True
-        else:
-            sig = True
-    return sig, seal
-def detect_marks_png(path: Path):
-    img = cv2.imread(str(path))
-    if img is None:
+SIG_THRESHOLD = {
+    "study_certificate": 5800,
+    "academic_leave_application": 2500,
+    "internship_certificate": 5800,
+}
+SEAL_THRESHOLD = 2000
+DEFAULT_SIG_THRESHOLD = 5800
+def _detect_marks_from_image(img: np.ndarray, doc_type: str | None = None):
+    if img is None or img.size == 0:
         return False, False
     h, w = img.shape[:2]
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
@@ -31,6 +23,28 @@ def detect_marks_png(path: Path):
     seal_region[:, : int(w * 0.60)] = 0
     sig_px = int(np.count_nonzero(sig_region))
     seal_px = int(np.count_nonzero(seal_region))
-    sig = 300 <= sig_px <= 0.10 * h * w
-    seal = seal_px >= 600
+    sig_th = SIG_THRESHOLD.get(doc_type or "", DEFAULT_SIG_THRESHOLD)
+    sig = sig_px >= sig_th
+    seal = seal_px >= SEAL_THRESHOLD
     return sig, seal
+def detect_marks_png(path: Path, doc_type: str | None = None):
+    img = cv2.imread(str(path))
+    return _detect_marks_from_image(img, doc_type=doc_type)
+def detect_marks_pdf(path: Path, doc_type: str | None = None):
+    try:
+        import pypdfium2 as pdfium
+    except ImportError:
+        return False, False
+    pdf = pdfium.PdfDocument(str(path))
+    try:
+        page = pdf[0]
+        bitmap = page.render(scale=2.0)
+        pil_image = bitmap.to_pil()
+    finally:
+        pdf.close()
+    img = np.array(pil_image)
+    if img.ndim == 3 and img.shape[2] == 3:
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    elif img.ndim == 3 and img.shape[2] == 4:
+        img = cv2.cvtColor(img, cv2.COLOR_RGBA2BGR)
+    return _detect_marks_from_image(img, doc_type=doc_type)

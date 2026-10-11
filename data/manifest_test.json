@@ -1,0 +1,5 @@
+[
+  {"document_id": "open-001", "document_type": "study_certificate", "pdf": "data/documents/open-001.pdf"},
+  {"document_id": "open-002", "document_type": "study_certificate", "pdf": "data/documents/open-002.pdf"},
+  {"document_id": "open-003", "document_type": "study_certificate", "pdf": "data/documents/open-003.pdf"}
+]

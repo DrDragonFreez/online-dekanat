@@ -1,5 +1,4 @@
 from app.core.extract import FIELD_ORDER, NOT_FOUND
-
 REQUIRED = {
     "study_certificate": {
         "text": {
@@ -24,7 +23,7 @@ REQUIRED = {
             "rule:4.2": "signature_present",
         },
     },
-    "internship": {
+    "internship_certificate": {
         "text": {
             "rule:5.1": [
                 "student_name", "organization", "internship_start",
@@ -38,33 +37,27 @@ REQUIRED = {
         },
     },
 }
-
 def validate(fields: dict, doc_type: str) -> dict:
     cfg = REQUIRED[doc_type]
-    missing = set[str] = set()
-    sources = set[str] = set()
-
+    missing: set[str] = set()
+    sources: set[str] = set()
     for rule, keys in cfg["text"].items():
         for k in keys:
             if fields.get(k) == NOT_FOUND:
                 missing.add(k)
                 sources.add(rule)
-
     for rule, flag in cfg["flag"].items():
         if not fields.get(flag, False):
             missing.add(flag)
             sources.add(rule)
-
     order = FIELD_ORDER[doc_type]
     missing_sorted = [k for k in order if k in missing]
-
     if missing_sorted:
         return {
             "status": "missing_fields",
             "missing_fields": missing_sorted,
             "sources": sorted(sources),
         }
-
     all_sources = sorted(set(cfg["text"]) | set(cfg["flag"]))
     return {
         "status": "document_ok",

@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     upload_dir: Path = base_dir / "uploads"
     result_dir: Path = base_dir / "results"
     max_upload_mb: int=20
-    tesseract_lang: str="russian"
+    tesseract_lang: str="rus"
     ocr_psm: int=6
     @property
     def allowed_ext(selfSelf)->set[str]:

@@ -44,7 +44,7 @@ def validate(fields: dict, doc_type: str) -> dict:
     missing = set[str] = set()
     sources = set[str] = set()
 
-    for rule, keys in cfg["rule"].items():
+    for rule, keys in cfg["text"].items():
         for k in keys:
             if fields.get(k) == NOT_FOUND:
                 missing.add(k)

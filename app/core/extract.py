@@ -17,15 +17,18 @@ def normalize_date(s: str):
     s = s.strip()
     if not s:
         return None
+
     m = _DATE_DDMMYYYY.search(s)
     if m:
-        d, mo, y = int(m.group(1)), m.group(2), int(m.group(3))
+        d, mo, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
         return f"{y:04d}-{mo:02d}-{d:02d}"
+
     m = _DATE_LONG.search(s)
     if m:
         d, mon, y = int(m.group(1)), _MONTHS.get(m.group(2).lower()), int(m.group(3))
         if mon:
             return f"{y:04d}-{mon:02d}-{d:02d}"
+
     m = _DATE_ISO.search(s)
     if m:
         return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"

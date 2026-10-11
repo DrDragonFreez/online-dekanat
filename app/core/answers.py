@@ -3,16 +3,24 @@ import re
 from app.core.extract import LABELS, LABEL_TO_KEY, NOT_FOUND
 
 _RE_COMPLETENESS = re.compile(
-    r"Содержит\s+ли\s+документ\s+все\s+обязательные\s+сведения", re.IGNORECASE)
+    r"Содержит\s+ли\s+документ\s+все\s+обязательные\s+сведения",
+    re.IGNORECASE)
 _RE_WHO_DECIDES = re.compile(
-    r"Кто\s+принимает\s+окончательное\s+решение", re.IGNORECASE)
+    r"Кто\s+принимает\s+окончательное\s+решение",
+    re.IGNORECASE)
 _RE_FIELD_VALUE = re.compile(
-    r"Укажи\s+значение\s+поля\s*[«\"']([^»\"']+)[»\"']", re.IGNORECASE)
+    r"Укажи\s+значение\s+поля\s*[«\"']([^»\"']+)[»\"']",
+    re.IGNORECASE,
+)
 
-ANSWER_NO_DATA = ("В документе и в Положении нет информации для ответа "
-                  "на этот вопрос. Обратитесь в деканат.")
-ANSWER_WHO = ("Окончательное решение принимает сотрудник деканата, "
-              "пункт 1.3 Положения")
+ANSWER_NO_DATA = (
+    "В документе и в Положении нет информации для ответа на этот вопрос. " 
+    "Обратитесь в деканат."
+)
+ANSWER_WHO = (
+    "Окончательное решение принимает сотрудник деканата, "
+    "пункт 1.3 Положения"
+)
 
 _SPECIAL_MISSING = {
     "signature_present": "подпись",
@@ -88,14 +96,14 @@ def build_answer(question: str, fields: dict, validation: dict) -> dict:
     m = _RE_FIELD_VALUE.search(q)
     if m:
         label = m.group(1).strip()
-        key = LABEL_TO_KEY[label]
+        key = LABEL_TO_KEY.get(label)
         if key in None:
 
             for k, v in LABEL_TO_KEY.items():
                 if k.lower() == label.lower():
                     key = v
                     break
-        if key is None:
+        if key is not None:
             return _answer_field(key, fields, label)
 
     return _no_data()

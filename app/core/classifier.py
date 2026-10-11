@@ -15,3 +15,12 @@ ANCHORS = {
     ],
 }
 
+def classify(text: str) -> str:
+    scores = {k: 0 for k in ANCHORS}
+    for dtype, pats in ANCHORS.items():
+        for p in pats:
+            if re.search(p, text, re.IGNORECASE):
+                scores[dtype] += 1
+    best = max(scores, key=scores.get)
+    return best if scores[best] > 0 else "study_certificate"
+

@@ -1,7 +1,7 @@
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
-    model_config = settingconfidict(env_file=".env", env_prefix="DEKANAT_")
+    model_config = SettingsConfigDict(env_file=".env", env_prefix="DEKANAT_")
     base_dir: Path = Path(__file__).resolve().parent.parent
     data_dir: Path = base_dir / "data"
     upload_dir: Path = base_dir / "uploads"

@@ -1,12 +1,16 @@
+import tempfile
 from pathlib import Path
+import cv2
 from app.core.pdf_io import read_pdf
 from app.core.ocr_io import read_image_ocr
 from app.core.marks import detect_marks_pdf, detect_marks_png
 from app.core.text_post import postprocess
+from app.core.normalize_text import normalize as normalize_text
 from app.core.classifier import classify
 from app.core.extract import extract_fields
 from app.core.rules import validate
 from app.core.answers import build_answer
+from app.core.preprocess import _auto_deskew
 def read_text(path: Path):
     path = Path(path)
     if path.suffix.lower() == ".pdf":
@@ -15,18 +19,32 @@ def read_text(path: Path):
     else:
         text = read_image_ocr(path)
         kind = "image"
-    return postprocess(text), kind
+    return normalize_text(postprocess(text)), kind
+def _deskew_for_marks(path: Path) -> Path:
+    path = Path(path)
+    if path.suffix.lower() == ".pdf":
+        return path
+    img = cv2.imread(str(path))
+    if img is None:
+        return path
+    deskewed = _auto_deskew(img)
+    if deskewed is None:
+        return path
+    tmp = Path(tempfile.gettempdir()) / f"deskew_{path.stem}.png"
+    cv2.imwrite(str(tmp), deskewed)
+    return tmp
 def read_marks(path: Path, doc_type: str):
     path = Path(path)
     if path.suffix.lower() == ".pdf":
         return detect_marks_pdf(path, doc_type=doc_type)
-    else:
-        return detect_marks_png(path, doc_type=doc_type)
+    return detect_marks_png(path, doc_type=doc_type)
 def process_full(path, question: str = "", doc_type: str | None = None) -> dict:
     text, kind = read_text(Path(path))
     if doc_type is None:
         doc_type = classify(text)
-    sig, seal = read_marks(Path(path), doc_type)
+    marks_path = _deskew_for_marks(Path(path))
+    sig, seal = read_marks(marks_path, doc_type)
+
     fields = extract_fields(text, doc_type)
     if "signature_present" in fields:
         fields["signature_present"] = bool(sig)

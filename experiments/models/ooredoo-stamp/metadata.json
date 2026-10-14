@@ -1,0 +1,16 @@
+{
+  "base_model": "hustvl/yolos-small",
+  "task": "object-detection",
+  "num_classes": 1,
+  "class_names": [
+    "stamp"
+  ],
+  "training_epoch": 48,
+  "best_val_loss": 0.9765024368579571,
+  "best_train_loss": 0.5132743653442179,
+  "dataset_size": 350,
+  "total_annotations": 711,
+  "training_date": "2025-10-19",
+  "organization": "Ooredoo-Group",
+  "author": "V. Hisamutdinovs"
+}

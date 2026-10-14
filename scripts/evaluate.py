@@ -87,10 +87,10 @@ def evaluate(reference, prediction):
         if not valid_ok:
             errors.append({'document_id': did, 'validation': 'mismatch'})
         answers = by_id(pred['answers'], 'question_id', f'{did}.answers')
-        ranswers = by_id(ref['answers'], 'question_id', f'{did}.reference.answers')
-        if set(answers) != set(ranswers):
+        answers = by_id(ref['answers'], 'question_id', f'{did}.reference.answers')
+        if set(answers) != set(answers):
             raise ValueError(f'{did}: набор question_id не совпадает с эталоном')
-        for qid, ra in ranswers.items():
+        for qid, ra in answers.items():
             a = answers[qid]
             keys(a, ['question_id', 'answerable', 'value', 'answer', 'sources'], qid)
             if type(a['answerable']) is not bool:

@@ -8,7 +8,7 @@ SIG_THRESHOLD = {
 }
 SEAL_THRESHOLD = 2000
 DEFAULT_SIG_THRESHOLD = 5800
-def _detect_marks_from_image(img: np.ndarray, doc_type: str | None = None):
+def _detect_from_image(img: np.ndarray, doc_type: str | None = None):
     if img is None or img.size == 0:
         return False, False
     h, w = img.shape[:2]
@@ -24,12 +24,10 @@ def _detect_marks_from_image(img: np.ndarray, doc_type: str | None = None):
     sig_px = int(np.count_nonzero(sig_region))
     seal_px = int(np.count_nonzero(seal_region))
     sig_th = SIG_THRESHOLD.get(doc_type or "", DEFAULT_SIG_THRESHOLD)
-    sig = sig_px >= sig_th
-    seal = seal_px >= SEAL_THRESHOLD
-    return sig, seal
+    return sig_px >= sig_th, seal_px >= SEAL_THRESHOLD
 def detect_marks_png(path: Path, doc_type: str | None = None):
     img = cv2.imread(str(path))
-    return _detect_marks_from_image(img, doc_type=doc_type)
+    return _detect_from_image(img, doc_type)
 def detect_marks_pdf(path: Path, doc_type: str | None = None):
     try:
         import pypdfium2 as pdfium
@@ -47,4 +45,4 @@ def detect_marks_pdf(path: Path, doc_type: str | None = None):
         img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
     elif img.ndim == 3 and img.shape[2] == 4:
         img = cv2.cvtColor(img, cv2.COLOR_RGBA2BGR)
-    return _detect_marks_from_image(img, doc_type=doc_type)
+    return _detect_from_image(img, doc_type)

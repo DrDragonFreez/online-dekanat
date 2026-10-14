@@ -39,3 +39,8 @@ desktop.ini
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Временные загрузки
+uploads/
+data/uploads/*
+!data/uploads/.gitkeep

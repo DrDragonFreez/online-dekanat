@@ -1,1 +1,1 @@
-# online-dekanat
+# Деканыч

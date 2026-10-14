@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Деканыч — цифровой секретарь деканата</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="traffic">
+    <span class="dot dot-close"></span>
+    <span class="dot dot-min"></span>
+    <span class="dot dot-max"></span>
+  </div>
+  <div class="brand">
+    <div class="brand-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    </div>
+    Деканыч
+    <span class="brand-sub">цифровой секретарь</span>
+  </div>
+  <div class="header-right">
+    <div class="status" id="status"><span class="dot-ind"></span> готов</div>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="col-left">
+    <form id="form" class="card">
+      <div class="card-title">Загрузка документа</div>
+
+      <label class="dropzone" id="dropzone">
+        <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg" hidden/>
+        <div class="drop-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 16V4m0 0l-4 4m4-4l4 4"/>
+            <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+          </svg>
+        </div>
+        <div class="drop-title">Перетащи или кликни</div>
+        <div class="drop-sub">PDF · PNG · JPG</div>
+        <div class="drop-file" id="dropFile"></div>
+      </label>
+
+      <label class="field">
+        <span>Тип документа</span>
+        <select id="doc_type">
+          <option value="">Автоопределение</option>
+          <option value="study_certificate">Справка об обучении</option>
+          <option value="academic_leave_application">Заявление на академотпуск</option>
+          <option value="internship_certificate">Справка о практике</option>
+        </select>
+      </label>
+
+      <div class="toggle-row">
+        <div class="toggle-text">
+          <div class="toggle-title">Формат документа</div>
+          <div class="toggle-hint" id="formatHint">Стандартный — поля распознаются по меткам</div>
+        </div>
+        <div class="toggle-right">
+          <span class="toggle-state" id="toggleState">Стандарт</span>
+          <label class="switch">
+            <input type="checkbox" id="nonstandard" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="toggle-row">
+        <div class="toggle-text">
+          <div class="toggle-title">Подсветка полей</div>
+          <div class="toggle-hint" id="highlightHint">Только проблемные поля</div>
+        </div>
+        <div class="toggle-right">
+          <span class="toggle-state" id="highlightModeState">По проблеме</span>
+          <label class="switch">
+            <input type="checkbox" id="alwaysHighlight" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>Вопрос</span>
+        <input id="question" type="text"
+               value="Содержит ли документ все обязательные сведения по Положению?"/>
+      </label>
+
+      <button type="submit" class="btn btn-primary">Проверить</button>
+    </form>
+
+    <div class="card hidden" id="preview">
+      <div class="card-title">Документ</div>
+      <div class="preview-body" id="previewBody"></div>
+    </div>
+
+    <div class="card hidden" id="highlightCard">
+      <div class="card-title">Подсветка полей</div>
+      <div class="preview-body">
+        <img id="highlightImg" alt="Подсветка полей"/>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-right">
+    <div class="card hidden" id="stages">
+      <div class="card-title">Обработка</div>
+      <div class="stage" data-stage="read"><span></span>Читаю документ</div>
+      <div class="stage" data-stage="ocr"><span></span>Распознаю текст</div>
+      <div class="stage" data-stage="fields"><span></span>Извлекаю поля</div>
+      <div class="stage" data-stage="rules"><span></span>Применяю Положение</div>
+      <div class="stage" data-stage="answer"><span></span>Готовлю ответ</div>
+    </div>
+
+    <div class="card hidden" id="result">
+      <div class="type-badge" id="typeBadge"></div>
+
+      <div class="card-title">Карточка полей</div>
+      <div class="fields" id="fields"></div>
+
+      <div class="card-title" style="margin-top:20px">Проверка</div>
+      <div class="verdict" id="verdict"></div>
+
+      <div class="card-title" style="margin-top:20px">Ответ</div>
+      <div class="answer" id="answer"></div>
+
+      <details class="raw">
+        <summary>Распознанный текст</summary>
+        <pre id="rawText"></pre>
+      </details>
+    </div>
+
+    <div class="empty" id="empty">
+      <div class="empty-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <path d="M14 2v6h6"/>
+          <path d="M9 13h6M9 17h6"/>
+        </svg>
+      </div>
+      <div class="empty-title">Загрузи документ</div>
+      <div class="empty-sub">Покажем поля, проверку и ответ со ссылками на Положение</div>
+    </div>
+  </section>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

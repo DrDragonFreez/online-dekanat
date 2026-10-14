@@ -1,0 +1,154 @@
+study_certificate:
+  title: "Справка об обучении"
+  anchors:
+    - "СПРАВКА\\s+ОБ\\s+ОБУЧЕНИИ"
+    - "Сведения\\s+об\\s+обучении\\s+студента"
+  fields_order:
+    - student_name
+    - university
+    - program
+    - study_form
+    - study_start
+    - study_end
+    - document_number
+    - issue_date
+    - signature_present
+    - seal_present
+  text_fields:
+    - student_name
+    - university
+    - program
+    - study_form
+    - study_start
+    - study_end
+    - document_number
+    - issue_date
+  date_fields:
+    - study_start
+    - study_end
+    - issue_date
+  labels:
+    student_name: "ФИО студента"
+    university: "Название вуза"
+    program: "Направление подготовки"
+    study_form: "Форма обучения"
+    study_start: "Начало периода обучения"
+    study_end: "Окончание периода обучения"
+    document_number: "Номер справки"
+    issue_date: "Дата выдачи"
+  required:
+    rule:3.1:
+      fields:
+        - student_name
+        - university
+        - program
+        - study_form
+        - study_start
+        - study_end
+        - document_number
+        - issue_date
+    rule:3.2:
+      flag: signature_present
+    rule:3.3:
+      flag: seal_present
+
+academic_leave_application:
+  title: "Заявление на академический отпуск"
+  anchors:
+    - "ЗАЯВЛЕНИЕ\\s+НА\\s+АКАДЕМИЧЕСКИЙ\\s+ОТПУСК"
+    - "Прошу\\s+предоставить\\s+академический\\s+отпуск"
+  fields_order:
+    - student_name
+    - group
+    - course
+    - leave_reason
+    - leave_start
+    - leave_end
+    - application_date
+    - signature_present
+  text_fields:
+    - student_name
+    - group
+    - course
+    - leave_reason
+    - leave_start
+    - leave_end
+    - application_date
+  date_fields:
+    - leave_start
+    - leave_end
+    - application_date
+  labels:
+    student_name: "ФИО студента"
+    group: "Учебная группа"
+    course: "Курс"
+    leave_reason: "Причина отпуска"
+    leave_start: "Дата начала отпуска"
+    leave_end: "Дата окончания отпуска"
+    application_date: "Дата заявления"
+  required:
+    rule:4.1:
+      fields:
+        - student_name
+        - group
+        - course
+        - leave_reason
+        - leave_start
+        - leave_end
+        - application_date
+    rule:4.2:
+      flag: signature_present
+
+internship_certificate:
+  title: "Справка о практике"
+  anchors:
+    - "СПРАВКА\\s+О\\s+ПРАКТИКЕ"
+    - "Сведения\\s+о\\s+практике"
+  fields_order:
+    - student_name
+    - organization
+    - internship_start
+    - internship_end
+    - supervisor_name
+    - grade
+    - document_number
+    - issue_date
+    - signature_present
+    - seal_present
+  text_fields:
+    - student_name
+    - organization
+    - internship_start
+    - internship_end
+    - supervisor_name
+    - grade
+    - document_number
+    - issue_date
+  date_fields:
+    - internship_start
+    - internship_end
+    - issue_date
+  labels:
+    student_name: "ФИО студента"
+    organization: "Название организации"
+    internship_start: "Дата начала практики"
+    internship_end: "Дата окончания практики"
+    supervisor_name: "ФИО руководителя практики"
+    grade: "Оценка"
+    document_number: "Номер справки"
+    issue_date: "Дата выдачи"
+  required:
+    rule:5.1:
+      fields:
+        - student_name
+        - organization
+        - internship_start
+        - internship_end
+        - supervisor_name
+        - grade
+        - document_number
+        - issue_date
+    rule:5.2:
+      flag: signature_present
+    rule:5.3:
+      flag: seal_present

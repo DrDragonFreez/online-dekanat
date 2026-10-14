@@ -1,5 +1,11 @@
 import re
 from app.core.text_post import fix_quotes
+from app.core.config_loader import get_type, load_doc_types
+from app.core.patterns import (
+    PATTERNS,
+    LABEL_SYNONYMS,
+    normalize_label,
+)
 NOT_FOUND = "не найдено"
 _MONTHS = {
     "января": 1, "февраля": 2, "марта": 3, "апреля": 4, "мая": 5, "июня": 6,
@@ -10,9 +16,9 @@ _DATE_DDMMYYYY = re.compile(r"(\d{1,2})[.\-/](\d{1,2})[.\-/](\d{4})")
 _DATE_ISO = re.compile(r"(\d{4})-(\d{2})-(\d{2})")
 _DATE_LONG = re.compile(r"(\d{1,2})\s+([а-яё]+)\s+(\d{4})", re.IGNORECASE)
 def normalize_date(s: str):
-    s = s.strip()
     if not s:
         return None
+    s = s.strip()
     m = _DATE_DDMMYYYY.search(s)
     if m:
         d, mo, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
@@ -27,91 +33,95 @@ def normalize_date(s: str):
     m = _DATE_ISO.search(s)
     if m:
         return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
-
     return None
-FIELD_ORDER = {
-    "study_certificate": [
-        "student_name", "university", "program", "study_form",
-        "study_start", "study_end", "document_number", "issue_date",
-        "signature_present", "seal_present",
-    ],
-    "academic_leave_application": [
-        "student_name", "group", "course", "leave_reason",
-        "leave_start", "leave_end", "application_date", "signature_present",
-    ],
-    "internship_certificate": [
-        "student_name", "organization", "internship_start", "internship_end",
-        "supervisor_name", "grade", "document_number", "issue_date",
-        "signature_present", "seal_present",
-    ],
-}
-LABELS = {
-    "student_name": "ФИО студента",
-    "university": "Название вуза",
-    "program": "Направление подготовки",
-    "study_form": "Форма обучения",
-    "study_start": "Начало периода обучения",
-    "study_end": "Окончание периода обучения",
-    "document_number": "Номер справки",
-    "issue_date": "Дата выдачи",
-    "group": "Учебная группа",
-    "course": "Курс",
-    "leave_reason": "Причина отпуска",
-    "leave_start": "Дата начала отпуска",
-    "leave_end": "Дата окончания отпуска",
-    "application_date": "Дата заявления",
-    "organization": "Название организации",
-    "internship_start": "Дата начала практики",
-    "internship_end": "Дата окончания практики",
-    "supervisor_name": "ФИО руководителя практики",
-    "grade": "Оценка",
-}
+def _build_lookup():
+    data = load_doc_types()
+    labels: dict[str, str] = {}
+    order: dict[str, list] = {}
+    text: dict[str, list] = {}
+    dates: dict[str, set] = {}
+    for name, cfg in data.items():
+        order[name] = list(cfg["fields_order"])
+        text[name] = list(cfg["text_fields"])
+        dates[name] = set(cfg["date_fields"])
+        for key, lbl in cfg["labels"].items():
+            labels.setdefault(key, lbl)
+    return labels, order, text, dates
+LABELS, FIELD_ORDER, TEXT_FIELDS_BY_TYPE, DATE_FIELDS = _build_lookup()
 LABEL_TO_KEY = {v: k for k, v in LABELS.items()}
-TEXT_FIELDS_BY_TYPE = {
-    "study_certificate": [
-        "student_name", "university", "program", "study_form",
-        "study_start", "study_end", "document_number", "issue_date",
-    ],
-    "academic_leave_application": [
-        "student_name", "group", "course", "leave_reason",
-        "leave_start", "leave_end", "application_date",
-    ],
-    "internship_certificate": [
-        "student_name", "organization", "internship_start", "internship_end",
-        "supervisor_name", "grade", "document_number", "issue_date",
-    ],
-}
-DATE_FIELDS = {
-    "study_start", "study_end", "issue_date",
-    "leave_start", "leave_end", "application_date",
-    "internship_start", "internship_end",
-}
 _UNDERSCORES = re.compile(r"[_\s]+$")
 def _clean_value(raw: str) -> str:
+    if raw is None:
+        return ""
     raw = raw.strip()
     raw = _UNDERSCORES.sub("", raw).strip()
     raw = raw.rstrip(".").strip()
     return raw
+def _exact_label_match(lines: list[str], label: str) -> str | None:
+    pat = re.compile(r"^(.+?)\s*[:\-]\s*(.*)$")
+    norm_label = normalize_label(label)
+    for i, line in enumerate(lines):
+        m = pat.match(line)
+        if not m:
+            continue
+        left = _clean_value(m.group(1))
+        right = _clean_value(m.group(2))
+        if normalize_label(left) != norm_label:
+            continue
+        if right:
+            return right
+        return None
+    return None
+def _pattern_match(text: str, key: str) -> str | None:
+    for pat in PATTERNS.get(key, []):
+        try:
+            m = re.search(pat, text, re.IGNORECASE | re.MULTILINE)
+            if m and m.groups():
+                value = _clean_value(m.group(1))
+                if value and 1 < len(value) < 300:
+                    return value
+        except re.error:
+            continue
+    return None
 def extract_fields(text: str, doc_type: str) -> dict:
-    if doc_type not in TEXT_FIELDS_BY_TYPE:
-        raise ValueError(f"Неизвестный тип документа: {doc_type}")
-    keys = TEXT_FIELDS_BY_TYPE[doc_type]
-    fields: dict = {}
+    cfg = get_type(doc_type)
+    labels = cfg["labels"]
+    text_fields = cfg["text_fields"]
+    order = cfg["fields_order"]
+    date_fields = set(cfg["date_fields"])
     lines = [l.rstrip() for l in text.splitlines()]
-    for key in keys:
-        label = LABELS[key]
-        pat = re.compile(rf"^{re.escape(label)}\s*:\s*(.*)$")
-        value = None
-        for line in lines:
-            m = pat.match(line)
-            if m:
-                raw = _clean_value(m.group(1))
-                if raw:
-                    value = raw
+    fields: dict = {}
+    doc_labels: dict[str, tuple[int, str]] = {}
+    label_pat = re.compile(r"^(.+?)\s*[:\-]\s*(.*)$")
+    for i, line in enumerate(lines):
+        m = label_pat.match(line)
+        if not m:
+            continue
+        left = _clean_value(m.group(1))
+        right = _clean_value(m.group(2))
+        if not left:
+            continue
+        doc_labels[normalize_label(left)] = (i, right)
+    for key in text_fields:
+        value: str | None = None
+        candidates = [labels[key], *LABEL_SYNONYMS.get(key, [])]
+        seen = set()
+        for candidate in candidates:
+            norm = normalize_label(candidate)
+            if norm in seen:
+                continue
+            seen.add(norm)
+            if norm in doc_labels:
+                idx, right = doc_labels[norm]
+                if right:
+                    value = right
+                    break
                 break
         if value is None:
+            value = _pattern_match(text, key)
+        if value is None:
             fields[key] = NOT_FOUND
-        elif key in DATE_FIELDS:
+        elif key in date_fields:
             nd = normalize_date(value)
             fields[key] = nd if nd else value
         else:
@@ -119,8 +129,9 @@ def extract_fields(text: str, doc_type: str) -> dict:
     for k in ("university", "organization"):
         if fields.get(k) and fields[k] != NOT_FOUND:
             fields[k] = fix_quotes(fields[k])
-    if "signature_present" in FIELD_ORDER[doc_type]:
+    if "signature_present" in order:
         fields["signature_present"] = False
-    if "seal_present" in FIELD_ORDER[doc_type]:
+    if "seal_present" in order:
         fields["seal_present"] = False
-    return {k: fields[k] for k in FIELD_ORDER[doc_type]}
+
+    return {k: fields[k] for k in order}

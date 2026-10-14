@@ -10,9 +10,9 @@ from app.api import (
 )
 from app.config import settings
 app = FastAPI(
-    title="Онлайн-деканат API",
+    title="Деканыч API",
     version="1.0.0",
-    description="Цифровой секретарь: OCR → поля → проверка → ответ",
+    description="Цифровой секретарь деканата: OCR → поля → проверка → ответ",
 )
 app.add_middleware(
     CORSMiddleware,

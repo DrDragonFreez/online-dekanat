@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
-from backend import _auto_deskew
+from app.core.preprocess import _auto_deskew
 def analyze(path):
     img = cv2.imread(str(path))
     if img is None:

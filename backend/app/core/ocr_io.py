@@ -4,7 +4,14 @@ import shutil
 from pathlib import Path
 import cv2
 import pytesseract
+from app.config import settings
+from app.core.preprocess import preprocess
 def _find_tesseract() -> str | None:
+    if settings.tesseract_path:
+        p = Path(settings.tesseract_path)
+        if p.exists():
+            return str(p)
+        print(f"[ocr] WARN: DEKANAT_TESSERACT_PATH={p} не существует, ищу дальше")
     env = os.environ.get("TESSERACT_CMD")
     if env and Path(env).exists():
         return env
@@ -12,7 +19,6 @@ def _find_tesseract() -> str | None:
     if which:
         return which
     system = platform.system()
-    candidates: list[str] = []
     if system == "Windows":
         candidates = [
             r"C:\Program Files\Tesseract-OCR\tesseract.exe",
@@ -43,18 +49,22 @@ if _tess_cmd:
 else:
     print(
         "[ocr] ВНИМАНИЕ: Tesseract не найден. "
-        "Установите его и/или задайте переменную окружения TESSERACT_CMD."
+        "Установите его и/или задайте DEKANAT_TESSERACT_PATH в .env."
     )
-if "TESSDATA_PREFIX" not in os.environ and _tess_cmd:
+if settings.tessdata_prefix and Path(settings.tessdata_prefix).is_dir():
+    os.environ["TESSDATA_PREFIX"] = settings.tessdata_prefix
+elif "TESSDATA_PREFIX" not in os.environ and _tess_cmd:
     tess_dir = Path(_tess_cmd).resolve().parent
-    for candidate in (tess_dir / "tessdata", tess_dir.parent / "share" / "tessdata"):
+    for candidate in (
+        tess_dir / "tessdata",
+        tess_dir.parent / "share" / "tessdata",       # Linux
+        tess_dir.parent / "share" / "tesseract-ocr",  # Debian/Ubuntu
+    ):
         if candidate.is_dir():
             os.environ["TESSDATA_PREFIX"] = str(candidate)
             break
-from app.config import settings
-from app.core.preprocess import preprocess
 def _russian_count(text: str) -> int:
-    return sum(1 for ch in text if 'а' <= ch.lower() <= 'я' or ch == 'ё')
+    return sum(1 for ch in text if "а" <= ch.lower() <= "я" or ch == "ё")
 def _ocr_one(img) -> str:
     try:
         binary = preprocess(img, mode="light")

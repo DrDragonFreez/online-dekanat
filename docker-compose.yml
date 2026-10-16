@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: dekanat-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./frontend:/frontend:ro
+    env_file:
+      - .env
+    environment:
+      DEKANAT_TESSERACT_PATH: /usr/bin/tesseract
+      DEKANAT_TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+      DEKANAT_DEBUG: "true"
+    command: >
+      python -m uvicorn app.main:app
+      --host 0.0.0.0
+      --port 8000
+      --reload
+    restart: unless-stopped

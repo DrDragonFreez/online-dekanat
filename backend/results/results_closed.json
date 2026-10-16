@@ -1,0 +1,188 @@
+{
+  "version": "1.0",
+  "documents": [
+    {
+      "document_id": "open-001",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Александров Артём Игоревич",
+        "university": "Учебный университет «Меридиан»",
+        "program": "38.03.01 Экономика",
+        "study_form": "очная",
+        "study_start": "2023-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1001",
+        "issue_date": "2026-09-01",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "document_ok",
+        "missing_fields": [],
+        "sources": [
+          "rule:3.1",
+          "rule:3.2",
+          "rule:3.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-001-Q1",
+          "answerable": true,
+          "value": "document_ok",
+          "answer": "Документ содержит все обязательные сведения по пунктам 3.1, 3.2, 3.3 Положения. Окончательное решение примет сотрудник деканата.",
+          "sources": [
+            "rule:3.1",
+            "rule:3.2",
+            "rule:3.3"
+          ]
+        },
+        {
+          "question_id": "open-001-Q2",
+          "answerable": true,
+          "value": "Александров Артём Игоревич",
+          "answer": "ФИО студента: Александров Артём Игоревич.",
+          "sources": [
+            "field:student_name"
+          ]
+        },
+        {
+          "question_id": "open-001-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-001-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-002",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Мельников Денис Игоревич",
+        "university": "Учебная академия «Горизонт»",
+        "program": "09.03.01 Информатика и вычислительная техника",
+        "study_form": "очно-заочная",
+        "study_start": "2022-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1002",
+        "issue_date": "не найдено",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "issue_date"
+        ],
+        "sources": [
+          "rule:3.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-002-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: дата выдачи. Основание: пункты 3.1 Положения.",
+          "sources": [
+            "rule:3.1"
+          ]
+        },
+        {
+          "question_id": "open-002-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Дата выдачи» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-002-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-002-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-003",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Жуков Андрей Дмитриевич",
+        "university": "Учебная академия «Горизонт»",
+        "program": "38.03.01 Экономика",
+        "study_form": "очно-заочная",
+        "study_start": "2022-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1003",
+        "issue_date": "2026-09-21",
+        "signature_present": false,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "signature_present"
+        ],
+        "sources": [
+          "rule:3.2"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-003-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: подпись сотрудника. Основание: пункты 3.2 Положения.",
+          "sources": [
+            "rule:3.2"
+          ]
+        },
+        {
+          "question_id": "open-003-Q2",
+          "answerable": true,
+          "value": "38.03.01 Экономика",
+          "answer": "Направление подготовки: 38.03.01 Экономика.",
+          "sources": [
+            "field:program"
+          ]
+        },
+        {
+          "question_id": "open-003-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-003-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    }
+  ]
+}

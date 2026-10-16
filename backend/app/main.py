@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from backend.app.api import routes_ask, routes_health, routes_batch, routes_document, routes_static
-from backend.app.config import settings
+from app.api import routes_ask, routes_health, routes_batch, routes_document, routes_static
+from app.config import settings
 app = FastAPI(
     title="Деканыч API",
     version="1.0.0",
@@ -16,7 +16,7 @@ app.add_middleware(
 )
 app.mount(
     "/static",
-    StaticFiles(directory=str(settings.base_dir / "app" / "static")),
+    StaticFiles(directory=str(settings.base_dir.parent / "frontend")),
     name="static",
 )
 app.include_router(routes_health.router)

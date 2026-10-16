@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from backend.app.core.pipeline import process_document
+from app.core.pipeline import process_document
 def resolve_path(item: dict, root: Path) -> Path:
     for key in ("pdf", "pdf_path", "image", "image_path"):
         value = item.get(key)

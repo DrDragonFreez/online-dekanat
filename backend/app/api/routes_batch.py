@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 from fastapi import APIRouter, HTTPException
-from backend.app.core.pipeline import process_document
-from backend.app.schemas import BatchRequest, BatchResponse
+from app.core.pipeline import process_document
+from app.schemas import BatchRequest, BatchResponse
 router = APIRouter(prefix="/api/batch", tags=["batch"])
 @router.post("/run", response_model=BatchResponse)
 def run_batch(req: BatchRequest):

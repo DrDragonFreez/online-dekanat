@@ -2,16 +2,16 @@ import re
 import tempfile
 from pathlib import Path
 import cv2
-from backend.app.core.pdf_io import read_pdf
-from backend.app.core.ocr_io import read_image_ocr
-from backend.app.core.marks import detect_marks_pdf, detect_marks_png
-from backend.app.core.text_post import postprocess
-from backend.app.core.normalize_text import normalize as normalize_text
-from backend.app.core.classifier import classify
-from backend.app.core.extract import extract_fields, NOT_FOUND
-from backend.app.core.rules import validate
-from backend.app.core.answers import build_answer
-from backend.app.core.preprocess import _auto_deskew
+from app.core.pdf_io import read_pdf
+from app.core.ocr_io import read_image_ocr
+from app.core.marks import detect_marks_pdf, detect_marks_png
+from app.core.text_post import postprocess
+from app.core.normalize_text import normalize as normalize_text
+from app.core.classifier import classify
+from app.core.extract import extract_fields, NOT_FOUND
+from app.core.rules import validate
+from app.core.answers import build_answer
+from app.core.preprocess import _auto_deskew
 def _is_blank_form(text, fields):
     if not text:
         return True
@@ -63,7 +63,7 @@ def process_full(path, question="", doc_type=None, marks_mode="strict", use_llm=
         if missing >= 4:
             print(f"[LLM] {missing} полей не найдено — подключаю LLM...")
             try:
-                from backend.app.core.llm_extract import extract_fields_llm
+                from app.core.llm_extract import extract_fields_llm
                 llm_fields = extract_fields_llm(text, doc_type)
                 for k, v in llm_fields.items():
                     if k in fields and fields[k] == NOT_FOUND and v != NOT_FOUND:

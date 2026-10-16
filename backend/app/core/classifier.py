@@ -1,5 +1,5 @@
 import re
-from backend.app.core.config_loader import load_doc_types, all_types
+from app.core.config_loader import load_doc_types, all_types
 WEIGHTED_ANCHORS = {
     "study_certificate": [
         (r"СПРАВКА\s+ОБ\s+ОБУЧЕНИИ", 5),

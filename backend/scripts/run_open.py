@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from backend.app.core.pipeline import process_document
+from app.core.pipeline import process_document
 def main():
     data = ROOT / "data"
     docs = json.loads((data / "documents.json").read_text(encoding="utf-8"))

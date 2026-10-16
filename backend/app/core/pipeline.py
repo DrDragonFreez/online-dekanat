@@ -1,9 +1,9 @@
 import os
 from pathlib import Path
-from backend.app.core.service import read_text, read_marks
-from backend.app.core.extract import extract_fields, NOT_FOUND
-from backend.app.core.rules import validate
-from backend.app.core.answers import build_answer
+from app.core.service import read_text, read_marks
+from app.core.extract import extract_fields, NOT_FOUND
+from app.core.rules import validate
+from app.core.answers import build_answer
 USE_LLM = os.getenv("DEKANAT_USE_LLM", "0") == "1"
 def _too_many_missing(fields: dict) -> bool:
     return sum(1 for v in fields.values() if v == NOT_FOUND) >= 5
@@ -19,7 +19,7 @@ def process_document(doc_id: str, doc_type: str, path, questions: list) -> dict:
         elif _too_many_missing(fields):
             print(f"[LLM] {doc_id}: rules дали много пропусков, подключаю LLM...")
             try:
-                from backend.app.core.llm_extract import extract_fields_llm
+                from app.core.llm_extract import extract_fields_llm
                 llm_fields = extract_fields_llm(text, doc_type)
                 for k, v in llm_fields.items():
                     if k in fields and fields[k] == NOT_FOUND and v != NOT_FOUND:

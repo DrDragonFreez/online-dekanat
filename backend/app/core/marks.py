@@ -11,7 +11,7 @@ def _normalize_size(img, target_width=1200):
     return cv2.resize(img, (target_width, int(h * scale)), interpolation=interp)
 def _thresholds_for(doc_type):
     try:
-        from backend.app.core.config_loader import get_type
+        from app.core.config_loader import get_type
         cfg = get_type(doc_type)
         m = cfg.get("marks", {}) or {}
         return (

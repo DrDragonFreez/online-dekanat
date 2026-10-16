@@ -1,5 +1,5 @@
 import re
-from backend.app.core.extract import LABELS, LABEL_TO_KEY, NOT_FOUND
+from app.core.extract import LABELS, LABEL_TO_KEY, NOT_FOUND
 _RE_COMPLETENESS = re.compile(
     r"Содержит\s+ли\s+документ\s+все\s+обязательные\s+сведения",
     re.IGNORECASE,

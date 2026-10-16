@@ -1,9 +1,8 @@
-from pathlib import Path
 from fastapi import APIRouter
 from fastapi.responses import FileResponse
-from backend.app.config import settings
+from app.config import settings
 router = APIRouter(tags=["ui"])
-STATIC = Path(__file__).resolve().parent.parent / "static"
+STATIC = settings.base_dir.parent / "frontend"
 @router.get("/")
 def index():
     return FileResponse(STATIC / "index.html")

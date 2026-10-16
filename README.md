@@ -24,6 +24,44 @@
 ---
 
 ## Быстрый старт
+Активируй `.venv`:
+
+   **Windows (PowerShell):**
+   ```powershell
+   .\.venv\Scripts\Activate.ps1
+   ```
+   Если PowerShell ругается на политику выполнения, один раз выполни:
+   ```powershell
+   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+   ```
+
+   **Windows (cmd):**
+   ```cmd
+   .venv\Scripts\activate.bat
+   ```
+
+   **Linux / macOS:**
+   ```bash
+   source .venv/bin/activate
+   ```
+
+   После активации в начале строки терминала появится `(.venv)`.
+
+### 0. Docker
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+Проверка образа без host mounts:
+
+```bash
+docker build -f backend/Dockerfile -t dekanat .
+docker run --rm -p 8000:8000 dekanat
+```
+
+UI: http://localhost:8000/
+Swagger: http://localhost:8000/docs
 
 ### 1. Зависимости Python
 

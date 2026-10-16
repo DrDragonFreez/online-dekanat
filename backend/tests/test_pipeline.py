@@ -2,9 +2,9 @@ import sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from app.core.extract import extract_fields, normalize_date, NOT_FOUND
-from app.core.rules import validate
-from app.core.answers import build_answer
+from backend.app.core.extract import extract_fields, normalize_date, NOT_FOUND
+from backend.app.core.rules import validate
+from backend.app.core.answers import build_answer
 def test_normalize_date_dot():
     assert normalize_date("01.09.2023") == "2023-09-01"
     assert normalize_date("31.08.2026") == "2026-08-31"

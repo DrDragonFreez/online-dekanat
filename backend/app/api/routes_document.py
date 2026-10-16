@@ -2,13 +2,13 @@ import uuid
 from pathlib import Path
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
-from app.config import settings
-from app.core.service import process_full
-from app.schemas import AnalyzeResponse, DocType
+from backend.app.config import settings
+from backend.app.core.service import process_full
+from backend.app.schemas import AnalyzeResponse, DocType
 router = APIRouter(prefix="/api/document", tags=["document"])
 @router.get("/types")
 def list_types():
-    from app.core.config_loader import all_types, all_titles
+    from backend.app.core.config_loader import all_types, all_titles
     titles = all_titles()
     return [{"value": t, "title": titles.get(t, t)} for t in all_types()]
 @router.post("/analyze", response_model=AnalyzeResponse)
@@ -53,8 +53,8 @@ async def highlight(
     doc_type: DocType = Form(...),
     mode: str = Form("all"),
 ):
-    from app.core.highlight import highlight_fields
-    from app.core.config_loader import get_type
+    from backend.app.core.highlight import highlight_fields
+    from backend.app.core.config_loader import get_type
     print(f"[api] /highlight: doc_type={doc_type}, mode={mode}")
     ext = Path(file.filename or "").suffix.lower()
     if ext not in settings.allowed_ext:

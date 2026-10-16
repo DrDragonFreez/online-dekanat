@@ -122,7 +122,7 @@ FEW_SHOT = {
 }
 def _get_type_config(doc_type):
     try:
-        from app.core.config_loader import get_type
+        from backend.app.core.config_loader import get_type
         return get_type(doc_type)
     except Exception:
         return None
@@ -339,7 +339,7 @@ def _parse_json_response(response, date_fields=None):
     }
     if date_fields is None:
         date_fields = set()
-    from app.core.extract import normalize_date
+    from backend.app.core.extract import normalize_date
     out = {}
     for k, v in data.items():
         if v is None:
@@ -415,7 +415,7 @@ def extract_fields_llm(text, doc_type):
         )
     generated = outputs[0][input_ids.shape[1]:]
     response = tokenizer.decode(generated, skip_special_tokens=True).strip()
-    from app.core.config_loader import get_type
+    from backend.app.core.config_loader import get_type
     date_fields = set(get_type(doc_type)["date_fields"])
     name_fields = _name_fields_for(doc_type)
     parsed = _parse_json_response(response, date_fields=date_fields)

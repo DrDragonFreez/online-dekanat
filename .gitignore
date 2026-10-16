@@ -30,7 +30,7 @@ ENV/
 data/uploads/*
 !data/uploads/.gitkeep
 results/*.json
-!results/.gitkeep
+!backend/results/.gitkeep
 
 # ОС
 .DS_Store

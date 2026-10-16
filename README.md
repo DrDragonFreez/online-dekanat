@@ -52,7 +52,7 @@ brew install tesseract tesseract-lang
 **Windows:**
 1. Скачать установщик: https://github.com/UB-Mannheim/tesseract/wiki
 2. При установке выбрать **Additional language data → Russian**.
-3. В `app/core/ocr_io.py` раскомментировать:
+3. В `backend/app` раскомментировать:
    ```python
    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
    os.environ.setdefault("TESSDATA_PREFIX", r"C:\Program Files\Tesseract-OCR\tessdata")
@@ -106,7 +106,7 @@ uvicorn app.main:app --reload
  └──────────────┘
 ```
 
-Каждый шаг — отдельный модуль в `app/core/`. Можно тестировать изолированно.
+Каждый шаг — отдельный модуль в `backend/app`. Можно тестировать изолированно.
 
 ---
 
@@ -128,7 +128,7 @@ curl -X POST http://127.0.0.1:8000/process \
   -F 'questions=[{"question_id":"q1","question":"Содержит ли документ все обязательные сведения по Положению?"}]'
 ```
 
-Пример ответа — см. `results/results_open.json`.
+Пример ответа — см. `backend/results`.
 
 ---
 

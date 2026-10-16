@@ -3,8 +3,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 import pytesseract
-from app.config import settings
-from app.core.preprocess import _upscale_if_small, _auto_deskew
+from backend.app.config import settings
+from backend.app.core.preprocess import _upscale_if_small, _auto_deskew
 _PALETTE = [
     (255, 122, 0),
     (89, 199, 52),

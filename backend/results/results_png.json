@@ -1,0 +1,1803 @@
+{
+  "version": "1.0",
+  "documents": [
+    {
+      "document_id": "open-001",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Александров Артём Игоревич",
+        "university": "Учебный университет «Меридиан»",
+        "program": "38.03.01 Экономика",
+        "study_form": "очная",
+        "study_start": "2023-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1001",
+        "issue_date": "2026-09-01",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "document_ok",
+        "missing_fields": [],
+        "sources": [
+          "rule:3.1",
+          "rule:3.2",
+          "rule:3.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-001-Q1",
+          "answerable": true,
+          "value": "document_ok",
+          "answer": "Документ содержит все обязательные сведения по пунктам 3.1, 3.2, 3.3 Положения. Окончательное решение примет сотрудник деканата.",
+          "sources": [
+            "rule:3.1",
+            "rule:3.2",
+            "rule:3.3"
+          ]
+        },
+        {
+          "question_id": "open-001-Q2",
+          "answerable": true,
+          "value": "Александров Артём Игоревич",
+          "answer": "ФИО студента: Александров Артём Игоревич.",
+          "sources": [
+            "field:student_name"
+          ]
+        },
+        {
+          "question_id": "open-001-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-001-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-002",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Мельников Денис Игоревич",
+        "university": "Учебная академия «Горизонт»",
+        "program": "09.03.01 Информатика и вычислительная техника",
+        "study_form": "очно-заочная",
+        "study_start": "2022-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1002",
+        "issue_date": "не найдено",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "issue_date"
+        ],
+        "sources": [
+          "rule:3.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-002-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: дата выдачи. Основание: пункты 3.1 Положения.",
+          "sources": [
+            "rule:3.1"
+          ]
+        },
+        {
+          "question_id": "open-002-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Дата выдачи» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-002-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-002-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-003",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Жуков Андрей Дмитриевич",
+        "university": "Учебная академия «Горизонт»",
+        "program": "38.03.01 Экономика",
+        "study_form": "очно-заочная",
+        "study_start": "2022-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1003",
+        "issue_date": "2026-09-21",
+        "signature_present": false,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "signature_present"
+        ],
+        "sources": [
+          "rule:3.2"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-003-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: подпись сотрудника. Основание: пункты 3.2 Положения.",
+          "sources": [
+            "rule:3.2"
+          ]
+        },
+        {
+          "question_id": "open-003-Q2",
+          "answerable": true,
+          "value": "38.03.01 Экономика",
+          "answer": "Направление подготовки: 38.03.01 Экономика.",
+          "sources": [
+            "field:program"
+          ]
+        },
+        {
+          "question_id": "open-003-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-003-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-004",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Климов Борис Дмитриевич",
+        "university": "Учебный университет «Меридиан»",
+        "program": "09.03.01 Информатика и вычислительная техника",
+        "study_form": "очно-заочная",
+        "study_start": "2023-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1004",
+        "issue_date": "2026-09-20",
+        "signature_present": true,
+        "seal_present": false
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "seal_present"
+        ],
+        "sources": [
+          "rule:3.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-004-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: печать вуза. Основание: пункты 3.3 Положения.",
+          "sources": [
+            "rule:3.3"
+          ]
+        },
+        {
+          "question_id": "open-004-Q2",
+          "answerable": true,
+          "value": "очно-заочная",
+          "answer": "Форма обучения: очно-заочная.",
+          "sources": [
+            "field:study_form"
+          ]
+        },
+        {
+          "question_id": "open-004-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-004-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-005",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "не найдено",
+        "university": "Учебная академия «Горизонт»",
+        "program": "09.03.01 Информатика и вычислительная техника",
+        "study_form": "очная",
+        "study_start": "2022-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "не найдено",
+        "issue_date": "2026-09-12",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "student_name",
+          "document_number"
+        ],
+        "sources": [
+          "rule:3.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-005-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: фио студента, номер справки. Основание: пункты 3.1 Положения.",
+          "sources": [
+            "rule:3.1"
+          ]
+        },
+        {
+          "question_id": "open-005-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «ФИО студента» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-005-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-005-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-006",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Соколов Олег Игоревич",
+        "university": "не найдено",
+        "program": "38.03.01 Экономика",
+        "study_form": "заочная",
+        "study_start": "не найдено",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1006",
+        "issue_date": "2026-09-20",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "university",
+          "study_start"
+        ],
+        "sources": [
+          "rule:3.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-006-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: название вуза, начало периода обучения. Основание: пункты 3.1 Положения.",
+          "sources": [
+            "rule:3.1"
+          ]
+        },
+        {
+          "question_id": "open-006-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Название вуза» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-006-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-006-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-007",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Орлов Максим Сергеевич",
+        "university": "Учебный университет «Меридиан»",
+        "program": "не найдено",
+        "study_form": "не найдено",
+        "study_start": "2024-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1007",
+        "issue_date": "2026-09-20",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "program",
+          "study_form"
+        ],
+        "sources": [
+          "rule:3.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-007-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: направление подготовки, форма обучения. Основание: пункты 3.1 Положения.",
+          "sources": [
+            "rule:3.1"
+          ]
+        },
+        {
+          "question_id": "open-007-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Направление подготовки» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-007-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-007-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-008",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Крылов Артём Викторович",
+        "university": "Учебный университет «Меридиан»",
+        "program": "42.03.02 Журналистика",
+        "study_form": "очная",
+        "study_start": "2023-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1008",
+        "issue_date": "2026-09-14",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "document_ok",
+        "missing_fields": [],
+        "sources": [
+          "rule:3.1",
+          "rule:3.2",
+          "rule:3.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-008-Q1",
+          "answerable": true,
+          "value": "document_ok",
+          "answer": "Документ содержит все обязательные сведения по пунктам 3.1, 3.2, 3.3 Положения. Окончательное решение примет сотрудник деканата.",
+          "sources": [
+            "rule:3.1",
+            "rule:3.2",
+            "rule:3.3"
+          ]
+        },
+        {
+          "question_id": "open-008-Q2",
+          "answerable": true,
+          "value": "2026-09-14",
+          "answer": "Дата выдачи: 2026-09-14.",
+          "sources": [
+            "field:issue_date"
+          ]
+        },
+        {
+          "question_id": "open-008-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-008-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-009",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Морозов Артём Дмитриевич",
+        "university": "Учебная академия «Горизонт»",
+        "program": "38.03.01 Экономика",
+        "study_form": "очно-заочная",
+        "study_start": "2022-09-01",
+        "study_end": "не найдено",
+        "document_number": "ОБ-1009",
+        "issue_date": "2026-09-21",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "study_end"
+        ],
+        "sources": [
+          "rule:3.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-009-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: окончание периода обучения. Основание: пункты 3.1 Положения.",
+          "sources": [
+            "rule:3.1"
+          ]
+        },
+        {
+          "question_id": "open-009-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Окончание периода обучения» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-009-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-009-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-010",
+      "document_type": "study_certificate",
+      "fields": {
+        "student_name": "Петров Андрей Николаевич",
+        "university": "Учебный институт «Вектор»",
+        "program": "42.03.02 Журналистика",
+        "study_form": "очно-заочная",
+        "study_start": "2023-09-01",
+        "study_end": "2026-08-31",
+        "document_number": "ОБ-1010",
+        "issue_date": "2026-09-20",
+        "signature_present": false,
+        "seal_present": false
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "signature_present",
+          "seal_present"
+        ],
+        "sources": [
+          "rule:3.2",
+          "rule:3.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-010-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: подпись сотрудника, печать вуза. Основание: пункты 3.2, 3.3 Положения.",
+          "sources": [
+            "rule:3.2",
+            "rule:3.3"
+          ]
+        },
+        {
+          "question_id": "open-010-Q2",
+          "answerable": true,
+          "value": "Учебный институт «Вектор»",
+          "answer": "Название вуза: Учебный институт «Вектор».",
+          "sources": [
+            "field:university"
+          ]
+        },
+        {
+          "question_id": "open-010-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-010-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-011",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Соколов Олег Николаевич",
+        "group": "ЖР-25-1",
+        "course": "3",
+        "leave_reason": "по состоянию здоровья",
+        "leave_start": "2026-11-01",
+        "leave_end": "2027-08-31",
+        "application_date": "2026-10-07",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "document_ok",
+        "missing_fields": [],
+        "sources": [
+          "rule:4.1",
+          "rule:4.2"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-011-Q1",
+          "answerable": true,
+          "value": "document_ok",
+          "answer": "Документ содержит все обязательные сведения по пунктам 4.1, 4.2 Положения. Окончательное решение примет сотрудник деканата.",
+          "sources": [
+            "rule:4.1",
+            "rule:4.2"
+          ]
+        },
+        {
+          "question_id": "open-011-Q2",
+          "answerable": true,
+          "value": "ЖР-25-1",
+          "answer": "Учебная группа: ЖР-25-1.",
+          "sources": [
+            "field:group"
+          ]
+        },
+        {
+          "question_id": "open-011-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-011-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-012",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Захаров Фёдор Дмитриевич",
+        "group": "ЖР-23-3",
+        "course": "3",
+        "leave_reason": "по состоянию здоровья",
+        "leave_start": "2026-11-01",
+        "leave_end": "2027-08-31",
+        "application_date": "не найдено",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "application_date"
+        ],
+        "sources": [
+          "rule:4.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-012-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: дата заявления. Основание: пункты 4.1 Положения.",
+          "sources": [
+            "rule:4.1"
+          ]
+        },
+        {
+          "question_id": "open-012-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Дата заявления» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-012-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-012-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-013",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Павлов Фёдор Дмитриевич",
+        "group": "ЭК-24-2",
+        "course": "4",
+        "leave_reason": "по семейным обстоятельствам",
+        "leave_start": "2026-11-01",
+        "leave_end": "2027-08-31",
+        "application_date": "2026-10-04",
+        "signature_present": false
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "signature_present"
+        ],
+        "sources": [
+          "rule:4.2"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-013-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: подпись студента. Основание: пункты 4.2 Положения.",
+          "sources": [
+            "rule:4.2"
+          ]
+        },
+        {
+          "question_id": "open-013-Q2",
+          "answerable": true,
+          "value": "по семейным обстоятельствам",
+          "answer": "Причина отпуска: по семейным обстоятельствам.",
+          "sources": [
+            "field:leave_reason"
+          ]
+        },
+        {
+          "question_id": "open-013-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-013-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-014",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Орлов Фёдор Викторович",
+        "group": "ЖР-22-3",
+        "course": "2",
+        "leave_reason": "не найдено",
+        "leave_start": "2026-11-01",
+        "leave_end": "2027-08-31",
+        "application_date": "2026-10-09",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "leave_reason"
+        ],
+        "sources": [
+          "rule:4.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-014-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: причина отпуска. Основание: пункты 4.1 Положения.",
+          "sources": [
+            "rule:4.1"
+          ]
+        },
+        {
+          "question_id": "open-014-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Причина отпуска» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-014-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-014-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-015",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "не найдено",
+        "group": "ИВТ-23-4",
+        "course": "4",
+        "leave_reason": "в связи с уходом за родственником",
+        "leave_start": "2026-11-01",
+        "leave_end": "2027-08-31",
+        "application_date": "2026-10-06",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "student_name"
+        ],
+        "sources": [
+          "rule:4.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-015-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: фио студента. Основание: пункты 4.1 Положения.",
+          "sources": [
+            "rule:4.1"
+          ]
+        },
+        {
+          "question_id": "open-015-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «ФИО студента» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-015-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-015-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-016",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Иванов Борис Николаевич",
+        "group": "не найдено",
+        "course": "не найдено",
+        "leave_reason": "по семейным обстоятельствам",
+        "leave_start": "2026-11-01",
+        "leave_end": "2027-08-31",
+        "application_date": "2026-10-05",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "group",
+          "course"
+        ],
+        "sources": [
+          "rule:4.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-016-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: учебная группа, курс. Основание: пункты 4.1 Положения.",
+          "sources": [
+            "rule:4.1"
+          ]
+        },
+        {
+          "question_id": "open-016-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Учебная группа» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-016-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-016-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-017",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Захаров Юрий Николаевич",
+        "group": "ЖР-21-2",
+        "course": "1",
+        "leave_reason": "по состоянию здоровья",
+        "leave_start": "не найдено",
+        "leave_end": "2027-08-31",
+        "application_date": "2026-10-08",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "leave_start"
+        ],
+        "sources": [
+          "rule:4.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-017-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: дата начала отпуска. Основание: пункты 4.1 Положения.",
+          "sources": [
+            "rule:4.1"
+          ]
+        },
+        {
+          "question_id": "open-017-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Дата начала отпуска» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-017-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-017-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-018",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Захаров Роман Дмитриевич",
+        "group": "ИВТ-22-3",
+        "course": "3",
+        "leave_reason": "по семейным обстоятельствам",
+        "leave_start": "2026-11-01",
+        "leave_end": "2027-08-31",
+        "application_date": "2026-10-03",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "document_ok",
+        "missing_fields": [],
+        "sources": [
+          "rule:4.1",
+          "rule:4.2"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-018-Q1",
+          "answerable": true,
+          "value": "document_ok",
+          "answer": "Документ содержит все обязательные сведения по пунктам 4.1, 4.2 Положения. Окончательное решение примет сотрудник деканата.",
+          "sources": [
+            "rule:4.1",
+            "rule:4.2"
+          ]
+        },
+        {
+          "question_id": "open-018-Q2",
+          "answerable": true,
+          "value": "ИВТ-22-3",
+          "answer": "Учебная группа: ИВТ-22-3.",
+          "sources": [
+            "field:group"
+          ]
+        },
+        {
+          "question_id": "open-018-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-018-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-019",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Романов Илья Андреевич",
+        "group": "ЖР-23-4",
+        "course": "2",
+        "leave_reason": "по состоянию здоровья",
+        "leave_start": "2026-11-01",
+        "leave_end": "не найдено",
+        "application_date": "2026-10-02",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "leave_end"
+        ],
+        "sources": [
+          "rule:4.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-019-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: дата окончания отпуска. Основание: пункты 4.1 Положения.",
+          "sources": [
+            "rule:4.1"
+          ]
+        },
+        {
+          "question_id": "open-019-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Дата окончания отпуска» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-019-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-019-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-020",
+      "document_type": "academic_leave_application",
+      "fields": {
+        "student_name": "Захаров Виктор Михайлович",
+        "group": "не найдено",
+        "course": "2",
+        "leave_reason": "по семейным обстоятельствам",
+        "leave_start": "2026-11-01",
+        "leave_end": "2027-08-31",
+        "application_date": "не найдено",
+        "signature_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "group",
+          "application_date"
+        ],
+        "sources": [
+          "rule:4.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-020-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: учебная группа, дата заявления. Основание: пункты 4.1 Положения.",
+          "sources": [
+            "rule:4.1"
+          ]
+        },
+        {
+          "question_id": "open-020-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Учебная группа» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-020-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-020-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-021",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Данилов Олег Алексеевич",
+        "organization": "Учебная организация «Спектр»",
+        "internship_start": "2026-06-01",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "Ильина Елена Андреевна",
+        "grade": "удовлетворительно",
+        "document_number": "ПР-2021",
+        "issue_date": "2026-07-18",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "document_ok",
+        "missing_fields": [],
+        "sources": [
+          "rule:5.1",
+          "rule:5.2",
+          "rule:5.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-021-Q1",
+          "answerable": true,
+          "value": "document_ok",
+          "answer": "Документ содержит все обязательные сведения по пунктам 5.1, 5.2, 5.3 Положения. Окончательное решение примет сотрудник деканата.",
+          "sources": [
+            "rule:5.1",
+            "rule:5.2",
+            "rule:5.3"
+          ]
+        },
+        {
+          "question_id": "open-021-Q2",
+          "answerable": true,
+          "value": "2026-06-01",
+          "answer": "Дата начала практики: 2026-06-01.",
+          "sources": [
+            "field:internship_start"
+          ]
+        },
+        {
+          "question_id": "open-021-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-021-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-022",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Мельников Фёдор Михайлович",
+        "organization": "Учебная организация «Спектр»",
+        "internship_start": "2026-06-01",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "Соколова Анна Викторовна",
+        "grade": "зачтено",
+        "document_number": "ПР-2022",
+        "issue_date": "не найдено",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "issue_date"
+        ],
+        "sources": [
+          "rule:5.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-022-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: дата выдачи. Основание: пункты 5.1 Положения.",
+          "sources": [
+            "rule:5.1"
+          ]
+        },
+        {
+          "question_id": "open-022-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Дата выдачи» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-022-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-022-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-023",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Шестаков Глеб Дмитриевич",
+        "organization": "Учебная организация «Спектр»",
+        "internship_start": "2026-06-01",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "Соколова Анна Викторовна",
+        "grade": "хорошо",
+        "document_number": "ПР-2023",
+        "issue_date": "2026-07-18",
+        "signature_present": false,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "signature_present"
+        ],
+        "sources": [
+          "rule:5.2"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-023-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: подпись руководителя. Основание: пункты 5.2 Положения.",
+          "sources": [
+            "rule:5.2"
+          ]
+        },
+        {
+          "question_id": "open-023-Q2",
+          "answerable": true,
+          "value": "Соколова Анна Викторовна",
+          "answer": "ФИО руководителя практики: Соколова Анна Викторовна.",
+          "sources": [
+            "field:supervisor_name"
+          ]
+        },
+        {
+          "question_id": "open-023-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-023-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-024",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Шестаков Олег Алексеевич",
+        "organization": "Учебная организация «Спектр»",
+        "internship_start": "2026-06-01",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "Ильина Елена Андреевна",
+        "grade": "зачтено",
+        "document_number": "ПР-2024",
+        "issue_date": "2026-07-17",
+        "signature_present": true,
+        "seal_present": false
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "seal_present"
+        ],
+        "sources": [
+          "rule:5.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-024-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: печать организации. Основание: пункты 5.3 Положения.",
+          "sources": [
+            "rule:5.3"
+          ]
+        },
+        {
+          "question_id": "open-024-Q2",
+          "answerable": true,
+          "value": "зачтено",
+          "answer": "Оценка: зачтено.",
+          "sources": [
+            "field:grade"
+          ]
+        },
+        {
+          "question_id": "open-024-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-024-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-025",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "не найдено",
+        "organization": "Учебная организация «Орбита»",
+        "internship_start": "2026-06-01",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "Кузнецова Мария Сергеевна",
+        "grade": "удовлетворительно",
+        "document_number": "не найдено",
+        "issue_date": "2026-07-16",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "student_name",
+          "document_number"
+        ],
+        "sources": [
+          "rule:5.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-025-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: фио студента, номер справки. Основание: пункты 5.1 Положения.",
+          "sources": [
+            "rule:5.1"
+          ]
+        },
+        {
+          "question_id": "open-025-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «ФИО студента» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-025-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-025-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-026",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Семенов Илья Дмитриевич",
+        "organization": "не найдено",
+        "internship_start": "не найдено",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "Соколова Анна Викторовна",
+        "grade": "удовлетворительно",
+        "document_number": "ПР-2026",
+        "issue_date": "2026-07-23",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "organization",
+          "internship_start"
+        ],
+        "sources": [
+          "rule:5.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-026-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: название организации, дата начала практики. Основание: пункты 5.1 Положения.",
+          "sources": [
+            "rule:5.1"
+          ]
+        },
+        {
+          "question_id": "open-026-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Название организации» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-026-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-026-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-027",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Смирнов Кирилл Сергеевич",
+        "organization": "Учебная организация «Парус»",
+        "internship_start": "2026-06-01",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "не найдено",
+        "grade": "не найдено",
+        "document_number": "ПР-2027",
+        "issue_date": "2026-07-25",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "supervisor_name",
+          "grade"
+        ],
+        "sources": [
+          "rule:5.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-027-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: фио руководителя практики, оценка. Основание: пункты 5.1 Положения.",
+          "sources": [
+            "rule:5.1"
+          ]
+        },
+        {
+          "question_id": "open-027-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «ФИО руководителя практики» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-027-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-027-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-028",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Соколов Никита Сергеевич",
+        "organization": "Учебная организация «Спектр»",
+        "internship_start": "2026-06-01",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "Соколова Анна Викторовна",
+        "grade": "отлично",
+        "document_number": "ПР-2028",
+        "issue_date": "2026-07-23",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "document_ok",
+        "missing_fields": [],
+        "sources": [
+          "rule:5.1",
+          "rule:5.2",
+          "rule:5.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-028-Q1",
+          "answerable": true,
+          "value": "document_ok",
+          "answer": "Документ содержит все обязательные сведения по пунктам 5.1, 5.2, 5.3 Положения. Окончательное решение примет сотрудник деканата.",
+          "sources": [
+            "rule:5.1",
+            "rule:5.2",
+            "rule:5.3"
+          ]
+        },
+        {
+          "question_id": "open-028-Q2",
+          "answerable": true,
+          "value": "Учебная организация «Спектр»",
+          "answer": "Название организации: Учебная организация «Спектр».",
+          "sources": [
+            "field:organization"
+          ]
+        },
+        {
+          "question_id": "open-028-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-028-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-029",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Волков Лев Андреевич",
+        "organization": "Учебная организация «Орбита»",
+        "internship_start": "2026-06-01",
+        "internship_end": "не найдено",
+        "supervisor_name": "Ильина Елена Андреевна",
+        "grade": "хорошо",
+        "document_number": "ПР-2029",
+        "issue_date": "2026-07-23",
+        "signature_present": true,
+        "seal_present": true
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "internship_end"
+        ],
+        "sources": [
+          "rule:5.1"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-029-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: дата окончания практики. Основание: пункты 5.1 Положения.",
+          "sources": [
+            "rule:5.1"
+          ]
+        },
+        {
+          "question_id": "open-029-Q2",
+          "answerable": false,
+          "value": null,
+          "answer": "Поле «Дата окончания практики» не найдено в документе. Обратитесь в деканат.",
+          "sources": []
+        },
+        {
+          "question_id": "open-029-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-029-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "document_id": "open-030",
+      "document_type": "internship_certificate",
+      "fields": {
+        "student_name": "Петров Артём Николаевич",
+        "organization": "Учебная организация «Парус»",
+        "internship_start": "2026-06-01",
+        "internship_end": "2026-07-15",
+        "supervisor_name": "Кузнецова Мария Сергеевна",
+        "grade": "отлично",
+        "document_number": "ПР-2030",
+        "issue_date": "2026-07-16",
+        "signature_present": false,
+        "seal_present": false
+      },
+      "validation": {
+        "status": "missing_fields",
+        "missing_fields": [
+          "signature_present",
+          "seal_present"
+        ],
+        "sources": [
+          "rule:5.2",
+          "rule:5.3"
+        ]
+      },
+      "answers": [
+        {
+          "question_id": "open-030-Q1",
+          "answerable": true,
+          "value": "missing_fields",
+          "answer": "Не хватает следующих сведений: подпись руководителя, печать организации. Основание: пункты 5.2, 5.3 Положения.",
+          "sources": [
+            "rule:5.2",
+            "rule:5.3"
+          ]
+        },
+        {
+          "question_id": "open-030-Q2",
+          "answerable": true,
+          "value": "2026-07-15",
+          "answer": "Дата окончания практики: 2026-07-15.",
+          "sources": [
+            "field:internship_end"
+          ]
+        },
+        {
+          "question_id": "open-030-Q3",
+          "answerable": true,
+          "value": "сотрудник деканата",
+          "answer": "Окончательное решение принимает сотрудник деканата, пункт 1.3 Положения.",
+          "sources": [
+            "rule:1.3"
+          ]
+        },
+        {
+          "question_id": "open-030-Q4",
+          "answerable": false,
+          "value": null,
+          "answer": "В документе и в Положении нет информации для ответа на этот вопрос. Обратитесь в деканат.",
+          "sources": []
+        }
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
-from app.core.service import read_text
+from backend import read_text
 path = ROOT / "data" / "documents" / "open-005.png"
 text, kind = read_text(path)
 print("=== KIND ===")

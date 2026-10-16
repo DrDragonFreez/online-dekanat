@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from app.config import settings
-from app.core.service import process_full
-from app.schemas import AskRequest, AskResponse
+from backend.app.config import settings
+from backend.app.core.service import process_full
+from backend.app.schemas import AskRequest, AskResponse
 router = APIRouter(prefix="/api/document", tags=["document"])
 @router.post("/{document_id}/ask", response_model=AskResponse)
 def ask(document_id: str, req: AskRequest):

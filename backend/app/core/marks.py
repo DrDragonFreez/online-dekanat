@@ -1,4 +1,3 @@
-from pathlib import Path
 import cv2
 import numpy as np
 SIG_THRESHOLD = 500
@@ -12,7 +11,7 @@ def _normalize_size(img, target_width=1200):
     return cv2.resize(img, (target_width, int(h * scale)), interpolation=interp)
 def _thresholds_for(doc_type):
     try:
-        from app.core.config_loader import get_type
+        from backend.app.core.config_loader import get_type
         cfg = get_type(doc_type)
         m = cfg.get("marks", {}) or {}
         return (

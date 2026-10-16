@@ -51,8 +51,8 @@ if "TESSDATA_PREFIX" not in os.environ and _tess_cmd:
         if candidate.is_dir():
             os.environ["TESSDATA_PREFIX"] = str(candidate)
             break
-from app.config import settings
-from app.core.preprocess import preprocess
+from backend.app.config import settings
+from backend.app.core.preprocess import preprocess
 def _russian_count(text: str) -> int:
     return sum(1 for ch in text if 'а' <= ch.lower() <= 'я' or ch == 'ё')
 def _ocr_one(img) -> str:

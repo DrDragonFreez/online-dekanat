@@ -1,4 +1,4 @@
-from app.core.extract import FIELD_ORDER, NOT_FOUND
+from backend.app.core.extract import FIELD_ORDER, NOT_FOUND
 REQUIRED = {
     "study_certificate": {
         "text": {

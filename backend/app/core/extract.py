@@ -1,7 +1,7 @@
 import re
-from app.core.text_post import fix_quotes
-from app.core.config_loader import get_type, load_doc_types
-from app.core.patterns import (
+from backend.app.core.text_post import fix_quotes
+from backend.app.core.config_loader import get_type, load_doc_types
+from backend.app.core.patterns import (
     PATTERNS,
     LABEL_SYNONYMS,
     normalize_label,

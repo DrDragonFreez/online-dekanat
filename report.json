@@ -1,0 +1,10 @@
+{
+  "format_valid": true,
+  "documents": 30,
+  "questions": 120,
+  "field_accuracy_macro": 1.0,
+  "validation_exact_match": 1.0,
+  "question_exact_match": 1.0,
+  "errors": [],
+  "note": "Текст answer проверяется на демо; автоматически сравниваются value, answerable и sources. Итоговый балл жюри не рассчитывается."
+}

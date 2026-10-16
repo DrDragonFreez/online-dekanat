@@ -20,31 +20,53 @@ def _normalize(s: str) -> str:
     s = s.replace(".", "").replace("-", " ").replace("/", " ")
     s = re.sub(r"\s+", " ", s)
     return s.strip(" .,:;—")
-def _load_as_bgr(path: Path):
-    path = Path(path)
-    if path.suffix.lower() == ".pdf":
-        try:
-            import pypdfium2 as pdfium
-        except ImportError:
-            return None
-        try:
-            pdf = pdfium.PdfDocument(str(path))
-            page = pdf[0]
-            bitmap = page.render(scale=2.0)
-            pil_image = bitmap.to_pil()
-            pdf.close()
-        except Exception:
-            return None
-        img = np.array(pil_image)
-        if img.ndim == 3 and img.shape[2] == 3:
-            return cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-        if img.ndim == 3 and img.shape[2] == 4:
-            return cv2.cvtColor(img, cv2.COLOR_RGBA2BGR)
-        return None
-    return cv2.imread(str(path))
-def _extract_words(img) -> list[dict]:
+def _load_pdf_words(path: Path):
+    try:
+        import pdfplumber
+        import pypdfium2 as pdfium
+    except ImportError:
+        return None, []
+    words = []
+    with pdfplumber.open(str(path)) as pdf:
+        page = pdf.pages[0]
+        W, H = page.width, page.height
+        for w in page.extract_words():
+            words.append({
+                "text": w["text"],
+                "x": float(w["x0"]),
+                "y": float(w["top"]),
+                "w": float(w["x1"]) - float(w["x0"]),
+                "h": float(w["bottom"]) - float(w["top"]),
+                "block": 0,
+                "par": 0,
+                "line": int(w["top"]),
+            })
+    try:
+        pdf = pdfium.PdfDocument(str(path))
+        page = pdf[0]
+        bitmap = page.render(scale=2.0)
+        pil_image = bitmap.to_pil()
+        pdf.close()
+    except Exception:
+        return None, []
+    img = np.array(pil_image)
+    if img.ndim == 3 and img.shape[2] == 3:
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    elif img.ndim == 3 and img.shape[2] == 4:
+        img = cv2.cvtColor(img, cv2.COLOR_RGBA2BGR)
+    h_render, w_render = img.shape[:2]
+    sx = w_render / W
+    sy = h_render / H
+    for w in words:
+        w["x"] *= sx
+        w["y"] *= sy
+        w["w"] *= sx
+        w["h"] *= sy
+        w["line"] = int(w["y"])
+    return img, words
+def _extract_words(gray) -> list[dict]:
     data = pytesseract.image_to_data(
-        img,
+        gray,
         lang=settings.tesseract_lang,
         config=f"--psm {settings.ocr_psm}",
         output_type=pytesseract.Output.DICT,
@@ -71,6 +93,15 @@ def _extract_words(img) -> list[dict]:
             "line": int(data["line_num"][i]),
         })
     return words
+def _load_image_words(path: Path):
+    img = cv2.imread(str(path))
+    if img is None:
+        return None, []
+    img = _auto_deskew(img)
+    img = _upscale_if_small(img)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    words = _extract_words(gray)
+    return img, words
 def _group_lines(words: list[dict]) -> list[list[dict]]:
     from collections import defaultdict
     buckets = defaultdict(list)
@@ -90,7 +121,7 @@ def _bbox_of_line(line: list[dict]) -> tuple[int, int, int, int]:
     ys1 = [w["y"] for w in line]
     xs2 = [w["x"] + w["w"] for w in line]
     ys2 = [w["y"] + w["h"] for w in line]
-    return min(xs1), min(ys1), max(xs2), max(ys2)
+    return int(min(xs1)), int(min(ys1)), int(max(xs2)), int(max(ys2))
 def _draw_label(img, x1: int, y1: int, x2: int, text: str, color):
     font = cv2.FONT_HERSHEY_SIMPLEX
     scale = 0.42
@@ -178,16 +209,17 @@ def highlight_fields(
 ) -> Path | None:
     missing_fields = set(missing_fields or [])
     print(f"[highlight] mode={mode}, missing={missing_fields}")
-    img = _load_as_bgr(path)
+    p = Path(path)
+    if p.suffix.lower() == ".pdf":
+        img, words = _load_pdf_words(p)
+    else:
+        img, words = _load_image_words(p)
     if img is None:
         print("[highlight] не смог загрузить файл")
         return None
-    oriented = _auto_deskew(img)
-    oriented = _upscale_if_small(oriented)
-    gray = cv2.cvtColor(oriented, cv2.COLOR_BGR2GRAY)
-    words = _extract_words(gray)
     lines = _group_lines(words) if words else []
     print(f"[highlight] слов: {len(words)}, строк: {len(lines)}")
+    oriented = img
     drawn = 0
     used_lines: set[int] = set()
     for idx, (key, value) in enumerate(fields.items()):

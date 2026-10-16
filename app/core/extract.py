@@ -15,7 +15,7 @@ _MONTHS = {
 _DATE_DDMMYYYY = re.compile(r"(\d{1,2})[.\-/](\d{1,2})[.\-/](\d{4})")
 _DATE_ISO = re.compile(r"(\d{4})-(\d{2})-(\d{2})")
 _DATE_LONG = re.compile(r"(\d{1,2})\s+([а-яё]+)\s+(\d{4})", re.IGNORECASE)
-def normalize_date(s: str):
+def normalize_date(s):
     if not s:
         return None
     s = s.strip()
@@ -36,10 +36,10 @@ def normalize_date(s: str):
     return None
 def _build_lookup():
     data = load_doc_types()
-    labels: dict[str, str] = {}
-    order: dict[str, list] = {}
-    text: dict[str, list] = {}
-    dates: dict[str, set] = {}
+    labels = {}
+    order = {}
+    text = {}
+    dates = {}
     for name, cfg in data.items():
         order[name] = list(cfg["fields_order"])
         text[name] = list(cfg["text_fields"])
@@ -49,49 +49,40 @@ def _build_lookup():
     return labels, order, text, dates
 LABELS, FIELD_ORDER, TEXT_FIELDS_BY_TYPE, DATE_FIELDS = _build_lookup()
 LABEL_TO_KEY = {v: k for k, v in LABELS.items()}
-_UNDERSCORES = re.compile(r"[_\s]+$")
-def _clean_value(raw: str) -> str:
+def _clean_value(raw):
     if raw is None:
         return ""
     raw = raw.strip()
-    raw = _UNDERSCORES.sub("", raw).strip()
+    raw = raw.strip("_").strip()
     raw = raw.rstrip(".").strip()
     return raw
-def _exact_label_match(lines: list[str], label: str) -> str | None:
-    pat = re.compile(r"^(.+?)\s*[:\-]\s*(.*)$")
-    norm_label = normalize_label(label)
-    for i, line in enumerate(lines):
-        m = pat.match(line)
-        if not m:
-            continue
-        left = _clean_value(m.group(1))
-        right = _clean_value(m.group(2))
-        if normalize_label(left) != norm_label:
-            continue
-        if right:
-            return right
-        return None
-    return None
-def _pattern_match(text: str, key: str) -> str | None:
-    for pat in PATTERNS.get(key, []):
+def _pattern_match(text, key, cfg=None):
+    pats = []
+    if cfg is not None:
+        pats = (cfg.get("patterns") or {}).get(key) or []
+    if not pats:
+        pats = PATTERNS.get(key, [])
+    for pat in pats:
         try:
-            m = re.search(pat, text, re.IGNORECASE | re.MULTILINE)
+            m = re.search(pat, text, re.IGNORECASE)
             if m and m.groups():
                 value = _clean_value(m.group(1))
-                if value and 1 < len(value) < 300:
+                if value and 1 < len(value) < 200:
+                    if "\n" in value:
+                        continue
                     return value
         except re.error:
             continue
     return None
-def extract_fields(text: str, doc_type: str) -> dict:
+def extract_fields(text, doc_type):
     cfg = get_type(doc_type)
     labels = cfg["labels"]
     text_fields = cfg["text_fields"]
     order = cfg["fields_order"]
     date_fields = set(cfg["date_fields"])
     lines = [l.rstrip() for l in text.splitlines()]
-    fields: dict = {}
-    doc_labels: dict[str, tuple[int, str]] = {}
+    fields = {}
+    doc_labels = {}
     label_pat = re.compile(r"^(.+?)\s*[:\-]\s*(.*)$")
     for i, line in enumerate(lines):
         m = label_pat.match(line)
@@ -101,9 +92,12 @@ def extract_fields(text: str, doc_type: str) -> dict:
         right = _clean_value(m.group(2))
         if not left:
             continue
-        doc_labels[normalize_label(left)] = (i, right)
+        norm = normalize_label(left)
+        if norm not in doc_labels:
+            doc_labels[norm] = right
     for key in text_fields:
-        value: str | None = None
+        value = None
+        found_label = False
         candidates = [labels[key], *LABEL_SYNONYMS.get(key, [])]
         seen = set()
         for candidate in candidates:
@@ -112,14 +106,14 @@ def extract_fields(text: str, doc_type: str) -> dict:
                 continue
             seen.add(norm)
             if norm in doc_labels:
-                idx, right = doc_labels[norm]
+                found_label = True
+                right = doc_labels[norm]
                 if right:
                     value = right
-                    break
                 break
-        if value is None:
-            value = _pattern_match(text, key)
-        if value is None:
+        if not found_label:
+            value = _pattern_match(text, key, cfg)
+        if value is None or value == "":
             fields[key] = NOT_FOUND
         elif key in date_fields:
             nd = normalize_date(value)
@@ -133,5 +127,4 @@ def extract_fields(text: str, doc_type: str) -> dict:
         fields["signature_present"] = False
     if "seal_present" in order:
         fields["seal_present"] = False
-
     return {k: fields[k] for k in order}

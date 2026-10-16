@@ -1,20 +1,33 @@
 from pathlib import Path
 import cv2
 import numpy as np
-SIG_THRESHOLD = {
-    "study_certificate": 5800,
-    "academic_leave_application": 2500,
-    "internship_certificate": 5800,
-}
-SEAL_THRESHOLD = 2000
-DEFAULT_SIG_THRESHOLD = 5800
-def _strict_detect(img: np.ndarray, doc_type: str | None = None):
+SIG_THRESHOLD = 500
+SEAL_THRESHOLD = 1500
+def _normalize_size(img, target_width=1200):
+    h, w = img.shape[:2]
+    if w == target_width:
+        return img
+    scale = target_width / w
+    interp = cv2.INTER_AREA if scale < 1 else cv2.INTER_CUBIC
+    return cv2.resize(img, (target_width, int(h * scale)), interpolation=interp)
+def _thresholds_for(doc_type):
+    try:
+        from app.core.config_loader import get_type
+        cfg = get_type(doc_type)
+        m = cfg.get("marks", {}) or {}
+        return (
+            int(m.get("sig_threshold", SIG_THRESHOLD)),
+            int(m.get("seal_threshold", SEAL_THRESHOLD)),
+        )
+    except Exception:
+        return SIG_THRESHOLD, SEAL_THRESHOLD
+def _strict_detect(img, doc_type=None, kind="pdf"):
     if img is None or img.size == 0:
         return False, False
+    img = _normalize_size(img)
     h, w = img.shape[:2]
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    mask = cv2.inRange(hsv, (90, 40, 40), (140, 255, 255))
-    mask = cv2.dilate(mask, np.ones((3, 3), np.uint8), iterations=1)
+    mask = cv2.inRange(hsv, (90, 80, 60), (140, 255, 255))
     sig_region = mask.copy()
     sig_region[: int(h * 0.45), :] = 0
     sig_region[:, int(w * 0.60):] = 0
@@ -23,9 +36,10 @@ def _strict_detect(img: np.ndarray, doc_type: str | None = None):
     seal_region[:, : int(w * 0.60)] = 0
     sig_px = int(np.count_nonzero(sig_region))
     seal_px = int(np.count_nonzero(seal_region))
-    sig_th = SIG_THRESHOLD.get(doc_type or "", DEFAULT_SIG_THRESHOLD)
-    return sig_px >= sig_th, seal_px >= SEAL_THRESHOLD
-def _auto_mask(img: np.ndarray) -> np.ndarray:
+    sig_th, seal_th = _thresholds_for(doc_type)
+    print(f"[marks-strict] {doc_type} ({kind}): sig={sig_px} (th={sig_th}), seal={seal_px} (th={seal_th})")
+    return sig_px >= sig_th, seal_px >= seal_th
+def _auto_mask(img):
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     blue = cv2.inRange(hsv, (90, 30, 30), (150, 255, 255))
     if np.count_nonzero(blue) > 500:
@@ -33,7 +47,7 @@ def _auto_mask(img: np.ndarray) -> np.ndarray:
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _, dark = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY_INV)
     return dark
-def _classify_cluster(comp: np.ndarray, page_area: int) -> str:
+def _classify_cluster(comp, page_area):
     area = int(np.count_nonzero(comp))
     if area < 200:
         return "other"
@@ -61,9 +75,14 @@ def _classify_cluster(comp: np.ndarray, page_area: int) -> str:
             and 300 <= area <= 0.15 * page_area):
         return "signature"
     return "other"
-def _loose_detect(img: np.ndarray):
+def _loose_detect(img):
     if img is None or img.size == 0:
         return False, False
+    h, w = img.shape[:2]
+    if w < 1500:
+        scale = 1500 / w
+        interp = cv2.INTER_AREA if scale < 1 else cv2.INTER_CUBIC
+        img = cv2.resize(img, (1500, int(h * scale)), interpolation=interp)
     h, w = img.shape[:2]
     page_area = h * w
     mask = _auto_mask(img)
@@ -92,17 +111,16 @@ def _loose_detect(img: np.ndarray):
             seal_found = True
         if sig_found and seal_found:
             break
+    print(f"[marks-loose] sig={sig_found}, seal={seal_found}")
     return sig_found, seal_found
-def _detect(img: np.ndarray, doc_type: str | None, mode: str):
+def detect_marks_png(path, doc_type=None, mode="strict"):
+    img = cv2.imread(str(path))
+    if img is None:
+        return False, False
     if mode == "loose":
         return _loose_detect(img)
-    return _strict_detect(img, doc_type)
-def detect_marks_png(path: Path, doc_type: str | None = None,
-                     mode: str = "strict"):
-    img = cv2.imread(str(path))
-    return _detect(img, doc_type, mode)
-def detect_marks_pdf(path: Path, doc_type: str | None = None,
-                     mode: str = "strict"):
+    return _strict_detect(img, doc_type, kind="png")
+def detect_marks_pdf(path, doc_type=None, mode="strict"):
     try:
         import pypdfium2 as pdfium
     except ImportError:
@@ -119,4 +137,6 @@ def detect_marks_pdf(path: Path, doc_type: str | None = None,
         img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
     elif img.ndim == 3 and img.shape[2] == 4:
         img = cv2.cvtColor(img, cv2.COLOR_RGBA2BGR)
-    return _detect(img, doc_type, mode)
+    if mode == "loose":
+        return _loose_detect(img)
+    return _strict_detect(img, doc_type, kind="pdf")

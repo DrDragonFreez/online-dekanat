@@ -4,7 +4,6 @@ const dropzone = document.getElementById("dropzone");
 const dropFile = document.getElementById("dropFile");
 const stages = document.getElementById("stages");
 const result = document.getElementById("result");
-const empty = document.getElementById("empty");
 const preview = document.getElementById("preview");
 const previewBody = document.getElementById("previewBody");
 const statusEl = document.getElementById("status");
@@ -16,10 +15,14 @@ const highlightImg = document.getElementById("highlightImg");
 const alwaysHighlight = document.getElementById("alwaysHighlight");
 const highlightModeState = document.getElementById("highlightModeState");
 const highlightHint = document.getElementById("highlightHint");
+const highlightToggleRow = document.getElementById("highlightToggleRow");
+const resetBtn = document.getElementById("resetBtn");
+const empty = document.getElementById("empty");
 const TYPE_LABEL = {
   study_certificate: "Справка об обучении",
   academic_leave_application: "Заявление на академический отпуск",
   internship_certificate: "Справка о практике",
+  transfer_certificate: "Справка о переводе",
 };
 const FIELD_LABEL = {
   student_name: "ФИО студента",
@@ -41,15 +44,127 @@ const FIELD_LABEL = {
   internship_end: "Дата окончания практики",
   supervisor_name: "ФИО руководителя практики",
   grade: "Оценка",
+  from_university: "Откуда переводится",
+  to_university: "Куда переводится",
+  transfer_date: "Дата перевода",
   signature_present: "Подпись",
   seal_present: "Печать",
 };
+const SAMPLES = [
+  {
+    id: "std-certificate",
+    label: "Справка об обучении",
+    group: "standard",
+    file: "/static/samples/std_certificate.png",
+  },
+  {
+    id: "std-leave",
+    label: "Заявление на академотпуск",
+    group: "standard",
+    file: "/static/samples/std_leave.png",
+  },
+  {
+    id: "std-practice",
+    label: "Справка о практике",
+    group: "standard",
+    file: "/static/samples/std_practice.png",
+  },
+  {
+    id: "non-ranepa",
+    label: "Реальная справка РАНХиГС",
+    group: "nonstandard",
+    file: "/static/samples/non_ranepa.png",
+  },
+  {
+    id: "non-susu",
+    label: "Реальная справка ЮУрГУ",
+    group: "nonstandard",
+    file: "/static/samples/non_susu.png",
+  },
+];
 let previewUrl = null;
 let highlightUrl = null;
 let lastAnalyzeResult = null;
 let lastFile = null;
+function setupRouter() {
+  const tabs = document.querySelectorAll(".nav-tab");
+  const pages = document.querySelectorAll(".page");
+  function show(name) {
+    if (!["home", "check", "about"].includes(name)) name = "home";
+    tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === name));
+    pages.forEach(p => {
+      p.classList.toggle("active", p.id === "page-" + name);
+    });
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+  function fromHash() {
+    const h = (location.hash || "#home").replace("#", "");
+    show(h);
+  }
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+}
+setupRouter();
+async function loadDocTypes() {
+  const sel = document.getElementById("doc_type");
+  if (!sel) return;
+  try {
+    const res = await fetch("/api/document/types");
+    if (!res.ok) return;
+    const types = await res.json();
+    for (const t of types) {
+      const opt = document.createElement("option");
+      opt.value = t.value;
+      opt.textContent = t.title;
+      sel.appendChild(opt);
+    }
+  } catch (e) {
+    console.warn("[types] не удалось загрузить список типов", e);
+  }
+}
+loadDocTypes();
+function renderSamples() {
+  const stdEl = document.getElementById("samplesStandard");
+  const nonEl = document.getElementById("samplesNonstandard");
+  if (!stdEl || !nonEl) return;
+  for (const s of SAMPLES) {
+    const card = document.createElement("div");
+    card.className = "sample-card";
+    card.dataset.sampleId = s.id;
+    card.innerHTML = `
+      <img src="${s.file}" alt="${s.label}" loading="lazy"/>
+      <div class="sample-label">${s.label}</div>`;
+    card.addEventListener("click", () => loadSample(s));
+    (s.group === "standard" ? stdEl : nonEl).appendChild(card);
+  }
+}
+renderSamples();
+async function loadSample(sample) {
+  try {
+    setStatus("загружаю пример…", "busy");
+    const res = await fetch(sample.file);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const blob = await res.blob();
+    const filename = sample.file.split("/").pop();
+    const file = new File([blob], filename, {
+      type: blob.type || "image/png",
+    });
+    const dt = new DataTransfer();
+    dt.items.add(file);
+    fileInput.files = dt.files;
+    nonstandardCheckbox.checked = sample.group === "nonstandard";
+    updateToggleUI();
+    updateFile(file);
+    setStatus("пример загружен", "");
+    location.hash = "#check";
+  } catch (e) {
+    console.error("[samples] не удалось загрузить пример", e);
+    setStatus("не удалось загрузить пример", "err");
+  }
+}
 function updateToggleUI() {
-  if (nonstandardCheckbox.checked) {
+  const isNonstd = nonstandardCheckbox.checked;
+  if (isNonstd) {
     formatHint.textContent = "Нестандартный — поля распознаются через LLM, подпись и печать — по форме";
     toggleState.textContent = "Нестандарт";
     toggleState.classList.add("active");
@@ -57,6 +172,18 @@ function updateToggleUI() {
     formatHint.textContent = "Стандартный — поля распознаются по меткам";
     toggleState.textContent = "Стандарт";
     toggleState.classList.remove("active");
+  }
+  let row = document.getElementById("highlightToggleRow");
+  if (!row) {
+    const always = document.getElementById("alwaysHighlight");
+    if (always) row = always.closest(".toggle-row");
+  }
+  if (row) {
+    if (isNonstd) {
+      row.style.setProperty("display", "none", "important");
+    } else {
+      row.style.removeProperty("display");
+    }
   }
 }
 nonstandardCheckbox.addEventListener("change", updateToggleUI);
@@ -79,6 +206,32 @@ alwaysHighlight.addEventListener("change", () => {
   }
 });
 updateAlwaysHighlightUI();
+function showEmpty() {
+  if (empty) empty.classList.remove("hidden");
+}
+function hideEmpty() {
+  if (empty) empty.classList.add("hidden");
+}
+if (resetBtn) {
+  resetBtn.addEventListener("click", () => {
+    fileInput.value = "";
+    dropFile.textContent = "";
+    dropzone.classList.remove("has-file");
+    preview.classList.add("hidden");
+    highlightCard.classList.add("hidden");
+    stages.classList.add("hidden");
+    result.classList.add("hidden");
+    if (previewUrl) { URL.revokeObjectURL(previewUrl); previewUrl = null; }
+    if (highlightUrl) { URL.revokeObjectURL(highlightUrl); highlightUrl = null; }
+    previewBody.innerHTML = "";
+    highlightImg.removeAttribute("src");
+    lastAnalyzeResult = null;
+    lastFile = null;
+    resetBtn.classList.add("hidden");
+    showEmpty();
+    setStatus("готов");
+  });
+}
 ["dragenter", "dragover"].forEach(e =>
   dropzone.addEventListener(e, ev => { ev.preventDefault(); dropzone.classList.add("drag"); })
 );
@@ -100,6 +253,8 @@ function updateFile(f) {
   if (highlightUrl) { URL.revokeObjectURL(highlightUrl); highlightUrl = null; }
   lastAnalyzeResult = null;
   lastFile = null;
+  if (resetBtn) resetBtn.classList.remove("hidden");
+  hideEmpty();
 }
 function showPreview(f) {
   preview.classList.remove("hidden");
@@ -136,6 +291,15 @@ function setStatus(text, cls = "") {
   statusEl.className = "status " + cls;
   statusEl.innerHTML = `<span class="dot-ind"></span> ${text}`;
 }
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    const name = tab.dataset.tab;
+    document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t === tab));
+    document.querySelectorAll(".tab-panel").forEach(p => {
+      p.classList.toggle("active", p.dataset.panel === name);
+    });
+  });
+});
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!fileInput.files[0]) { setStatus("файл не выбран", "err"); return; }
@@ -147,7 +311,7 @@ form.addEventListener("submit", async (e) => {
   const nonstd = nonstandardCheckbox.checked;
   fd.append("use_llm", nonstd ? "1" : "0");
   fd.append("marks_mode", nonstd ? "loose" : "strict");
-  empty.classList.add("hidden");
+  hideEmpty();
   result.classList.add("hidden");
   highlightCard.classList.add("hidden");
   stages.classList.remove("hidden");
@@ -165,12 +329,14 @@ form.addEventListener("submit", async (e) => {
     lastAnalyzeResult = r;
     lastFile = fileInput.files[0];
     maybeShowHighlight(r, lastFile);
+    if (resetBtn) resetBtn.classList.remove("hidden");
   } catch (err) {
     clearInterval(stageTimer);
     stages.classList.add("hidden");
     setStatus("ошибка", "err");
     result.classList.remove("hidden");
     result.innerHTML = `<div class="answer err">Ошибка: ${err.message}</div>`;
+    if (resetBtn) resetBtn.classList.remove("hidden");
   }
 });
 function maybeShowHighlight(result, file) {
@@ -189,7 +355,6 @@ async function loadHighlightImage(file, docType, mode) {
   if (highlightUrl) { URL.revokeObjectURL(highlightUrl); highlightUrl = null; }
   highlightImg.removeAttribute("src");
   highlightImg.alt = "Загружаю подсветку…";
-  console.log("[highlight] mode:", mode, "docType:", docType);
   try {
     const fd = new FormData();
     fd.append("file", file);
@@ -199,6 +364,10 @@ async function loadHighlightImage(file, docType, mode) {
       method: "POST",
       body: fd,
     });
+    if (res.status === 404) {
+      highlightCard.classList.add("hidden");
+      return;
+    }
     if (!res.ok) {
       console.warn("[highlight] API error:", res.status);
       highlightCard.classList.add("hidden");
@@ -215,7 +384,6 @@ async function loadHighlightImage(file, docType, mode) {
 }
 function renderResult(r) {
   result.classList.remove("hidden");
-
   const typeLabel = TYPE_LABEL[r.doc_type] || r.doc_type;
   const auto = r.doc_type_auto ? '<span class="auto">авто</span>' : "";
   document.getElementById("typeBadge").innerHTML = `📄 ${typeLabel} ${auto}`;

@@ -4,151 +4,286 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Деканыч — цифровой секретарь деканата</title>
+  <link rel="icon" type="image/png" href="/static/logo.png"/>
   <link rel="stylesheet" href="/static/style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-
 <header class="app-header">
-  <div class="traffic">
-    <span class="dot dot-close"></span>
-    <span class="dot dot-min"></span>
-    <span class="dot dot-max"></span>
-  </div>
-  <div class="brand">
+  <a href="#home" class="brand">
     <div class="brand-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 12l2 2 4-4"/>
-      </svg>
+      <img src="/static/logo.png" alt="Деканыч"/>
     </div>
-    Деканыч
-    <span class="brand-sub">цифровой секретарь</span>
-  </div>
+    <div class="brand-text">
+      <div class="brand-title">Деканыч</div>
+      <div class="brand-sub">цифровой секретарь деканата</div>
+    </div>
+  </a>
+  <nav class="app-nav">
+    <a href="#home" class="nav-tab" data-tab="home">Главная</a>
+    <a href="#check" class="nav-tab" data-tab="check">Проверка</a>
+    <a href="#about" class="nav-tab" data-tab="about">О сервисе</a>
+  </nav>
   <div class="header-right">
     <div class="status" id="status"><span class="dot-ind"></span> готов</div>
   </div>
 </header>
 
-<main class="layout">
-  <section class="col-left">
-    <form id="form" class="card">
-      <div class="card-title">Загрузка документа</div>
-
-      <label class="dropzone" id="dropzone">
-        <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg" hidden/>
-        <div class="drop-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 16V4m0 0l-4 4m4-4l4 4"/>
-            <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
-          </svg>
-        </div>
-        <div class="drop-title">Перетащи или кликни</div>
-        <div class="drop-sub">PDF · PNG · JPG</div>
-        <div class="drop-file" id="dropFile"></div>
-      </label>
-
-      <label class="field">
-        <span>Тип документа</span>
-        <select id="doc_type">
-          <option value="">Автоопределение</option>
-          <option value="study_certificate">Справка об обучении</option>
-          <option value="academic_leave_application">Заявление на академотпуск</option>
-          <option value="internship_certificate">Справка о практике</option>
-        </select>
-      </label>
-
-      <div class="toggle-row">
-        <div class="toggle-text">
-          <div class="toggle-title">Формат документа</div>
-          <div class="toggle-hint" id="formatHint">Стандартный — поля распознаются по меткам</div>
-        </div>
-        <div class="toggle-right">
-          <span class="toggle-state" id="toggleState">Стандарт</span>
-          <label class="switch">
-            <input type="checkbox" id="nonstandard" />
-            <span class="slider"></span>
-          </label>
+<main>
+  <section id="page-home" class="page active">
+    <div class="landing">
+      <div class="landing-hero">
+        <div class="landing-badge">Цифровой секретарь деканата</div>
+        <h1 class="landing-title">Деканыч</h1>
+        <p class="landing-sub">
+          Это веб-приложение для предварительной проверки студенческих документов.
+          Читает студенческие документы, проверяет их по
+          Положению. Помогает быстро понять, чего не хватает в справке или заявлении до
+          похода в деканат.
+        </p>
+        <div class="landing-actions">
+          <a href="#check" class="btn btn-primary btn-lg">Проверить документ</a>
+          <a href="#about" class="btn btn-secondary btn-lg">Как это работает</a>
         </div>
       </div>
 
-      <div class="toggle-row">
-        <div class="toggle-text">
-          <div class="toggle-title">Подсветка полей</div>
-          <div class="toggle-hint" id="highlightHint">Только проблемные поля</div>
+      <div class="landing-features">
+        <div class="landing-feature">
+          <div class="landing-feature-icon">📄</div>
+          <div class="landing-feature-title">OCR и выравнивание</div>
+          <div class="landing-feature-text">Распознаёт текст, выравнивает наклон скана</div>
         </div>
-        <div class="toggle-right">
-          <span class="toggle-state" id="highlightModeState">По проблеме</span>
-          <label class="switch">
-            <input type="checkbox" id="alwaysHighlight" />
-            <span class="slider"></span>
-          </label>
+        <div class="landing-feature">
+          <div class="landing-feature-icon">🧩</div>
+          <div class="landing-feature-title">Извлечение полей</div>
+          <div class="landing-feature-text">По меткам, а если что-то не нашлось — через LLM</div>
+        </div>
+        <div class="landing-feature">
+          <div class="landing-feature-icon">✍️</div>
+          <div class="landing-feature-title">Подпись и печать</div>
+          <div class="landing-feature-text">Проверка графических отметок на снимке</div>
+        </div>
+        <div class="landing-feature">
+          <div class="landing-feature-icon">📘</div>
+          <div class="landing-feature-title">Сверка с Положением</div>
+          <div class="landing-feature-text">Ответ со ссылками на пункты rule:X.Y</div>
         </div>
       </div>
 
-      <label class="field">
-        <span>Вопрос</span>
-        <input id="question" type="text"
-               value="Содержит ли документ все обязательные сведения по Положению?"/>
-      </label>
+      <div class="landing-samples">
+        <div class="landing-samples-header">
+          <div class="landing-samples-title">Примеры документов</div>
+          <div class="landing-samples-sub">Кликните на карточку — откроется страница проверки с уже загруженным файлом</div>
+        </div>
 
-      <button type="submit" class="btn btn-primary">Проверить</button>
-    </form>
-
-    <div class="card hidden" id="preview">
-      <div class="card-title">Документ</div>
-      <div class="preview-body" id="previewBody"></div>
-    </div>
-
-    <div class="card hidden" id="highlightCard">
-      <div class="card-title">Подсветка полей</div>
-      <div class="preview-body">
-        <img id="highlightImg" alt="Подсветка полей"/>
+        <div class="samples-group">
+          <div class="samples-group-title">Стандартные — распознаются по меткам</div>
+          <div class="samples" id="samplesStandard"></div>
+        </div>
+        <div class="samples-group">
+          <div class="samples-group-title">Нестандартные — распознаются через LLM</div>
+          <div class="samples" id="samplesNonstandard"></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="col-right">
-    <div class="card hidden" id="stages">
-      <div class="card-title">Обработка</div>
-      <div class="stage" data-stage="read"><span></span>Читаю документ</div>
-      <div class="stage" data-stage="ocr"><span></span>Распознаю текст</div>
-      <div class="stage" data-stage="fields"><span></span>Извлекаю поля</div>
-      <div class="stage" data-stage="rules"><span></span>Применяю Положение</div>
-      <div class="stage" data-stage="answer"><span></span>Готовлю ответ</div>
-    </div>
+  <section id="page-check" class="page">
+    <div class="layout">
+      <aside class="col-left">
+        <form id="form" class="card">
+          <div class="card-title">Загрузка документа</div>
+          <label class="dropzone" id="dropzone">
+            <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg" hidden/>
+            <div class="drop-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 16V4m0 0l-4 4m4-4l4 4"/>
+                <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+              </svg>
+            </div>
+            <div class="drop-title">Перетащи или кликни</div>
+            <div class="drop-sub">PDF · PNG · JPG</div>
+            <div class="drop-file" id="dropFile"></div>
+          </label>
+          <label class="field">
+            <span>Тип документа</span>
+            <select id="doc_type">
+              <option value="">Автоопределение</option>
+            </select>
+          </label>
+          <div class="toggle-row">
+            <div class="toggle-text">
+              <div class="toggle-title">Формат документа</div>
+              <div class="toggle-hint" id="formatHint">Стандартный — поля распознаются по меткам</div>
+            </div>
+            <div class="toggle-right">
+              <span class="toggle-state" id="toggleState">Стандарт</span>
+              <label class="switch">
+                <input type="checkbox" id="nonstandard" />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="toggle-row" id="highlightToggleRow">
+            <div class="toggle-text">
+              <div class="toggle-title">Подсветка полей</div>
+              <div class="toggle-hint" id="highlightHint">Только проблемные поля</div>
+            </div>
+            <div class="toggle-right">
+              <span class="toggle-state" id="highlightModeState">По проблеме</span>
+              <label class="switch">
+                <input type="checkbox" id="alwaysHighlight" />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <label class="field">
+            <span>Вопрос</span>
+            <input id="question" type="text"
+                   value="Содержит ли документ все обязательные сведения по Положению?"/>
+          </label>
+          <button type="submit" class="btn btn-primary">Проверить</button>
+          <button type="button" class="btn btn-secondary hidden" id="resetBtn">Другой документ</button>
+        </form>
+      </aside>
 
-    <div class="card hidden" id="result">
-      <div class="type-badge" id="typeBadge"></div>
+      <section class="col-mid">
+        <div class="card hidden" id="preview">
+          <div class="card-title">Документ</div>
+          <div class="preview-body" id="previewBody"></div>
+        </div>
+        <div class="card hidden" id="highlightCard">
+          <div class="card-title">Подсветка полей</div>
+          <div class="preview-body">
+            <img id="highlightImg" alt="Подсветка полей"/>
+          </div>
+        </div>
+      </section>
 
-      <div class="card-title">Карточка полей</div>
-      <div class="fields" id="fields"></div>
+      <section class="col-right">
+        <div class="card hidden" id="stages">
+          <div class="card-title">Обработка</div>
+          <div class="stage" data-stage="read"><span></span>Читаю документ</div>
+          <div class="stage" data-stage="ocr"><span></span>Распознаю текст</div>
+          <div class="stage" data-stage="fields"><span></span>Извлекаю поля</div>
+          <div class="stage" data-stage="rules"><span></span>Применяю Положение</div>
+          <div class="stage" data-stage="answer"><span></span>Готовлю ответ</div>
+        </div>
 
-      <div class="card-title" style="margin-top:20px">Проверка</div>
-      <div class="verdict" id="verdict"></div>
+        <div class="card hidden" id="result">
+          <div class="result-header">
+            <div class="type-badge" id="typeBadge"></div>
+            <div class="tabs">
+              <button class="tab active" data-tab="answer">Ответ</button>
+              <button class="tab" data-tab="fields">Поля</button>
+              <button class="tab" data-tab="text">Текст</button>
+            </div>
+          </div>
 
-      <div class="card-title" style="margin-top:20px">Ответ</div>
-      <div class="answer" id="answer"></div>
+          <div class="tab-panel active" data-panel="answer">
+            <div class="verdict" id="verdict"></div>
+            <div class="answer" id="answer" style="margin-top:12px"></div>
+          </div>
 
-      <details class="raw">
-        <summary>Распознанный текст</summary>
-        <pre id="rawText"></pre>
-      </details>
-    </div>
+          <div class="tab-panel" data-panel="fields">
+            <div class="fields" id="fields"></div>
+          </div>
 
-    <div class="empty" id="empty">
-      <div class="empty-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-          <path d="M14 2v6h6"/>
-          <path d="M9 13h6M9 17h6"/>
-        </svg>
+          <div class="tab-panel" data-panel="text">
+            <pre class="rawtext" id="rawText"></pre>
+          </div>
+        </div>
+      </section>
+
+      <div class="empty" id="empty">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <path d="M14 2v6h6"/>
+            <path d="M9 13h6M9 17h6"/>
+          </svg>
+        </div>
+        <div class="empty-title">Загрузите документ</div>
+        <div class="empty-sub">Слева выберите файл или <a href="#home" class="empty-link">возьмите пример с главной</a></div>
       </div>
-      <div class="empty-title">Загрузи документ</div>
-      <div class="empty-sub">Покажем поля, проверку и ответ со ссылками на Положение</div>
+    </div>
+  </section>
+
+  <section id="page-about" class="page">
+    <div class="about-wrap">
+      <div class="hero">
+        <h1 class="hero-title">О сервисе</h1>
+        <p class="hero-sub">
+          «Деканыч» — цифровой секретарь деканата. Читает студенческие документы,
+          извлекает поля, проверяет их по Положению и отвечает на вопросы со ссылками на пункты.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon">📄</div>
+          <div class="about-title">OCR + выравнивание</div>
+          <div class="about-text">
+            Tesseract распознаёт текст, автовыравнивание компенсирует наклон скана.
+            Для PDF используется текстовый слой, для фото — OCR с поворотом на 90/180/270.
+          </div>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">🧩</div>
+          <div class="about-title">Извлечение полей</div>
+          <div class="about-text">
+            Сначала поля ищутся по меткам «Метка: значение». Если что-то не нашлось —
+            подключается LLM (Qwen2.5), и она добирает пропущенное.
+          </div>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">✍️</div>
+          <div class="about-title">Подпись и печать</div>
+          <div class="about-text">
+            Проверка графических отметок через HSV-маску и морфологию.
+            Для синтетических документов — strict-режим, для реальных фото — loose.
+          </div>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">📘</div>
+          <div class="about-title">Сверка с Положением</div>
+          <div class="about-text">
+            Правила проверки описаны в <code>data/doc_types.yaml</code>.
+            Каждый ответ сопровождается ссылкой на пункт — <code>rule:X.Y</code>.
+          </div>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">➕</div>
+          <div class="about-title">Новый тип без кода</div>
+          <div class="about-text">
+            Новый тип документа добавляется правкой одного YAML-файла:
+            анкоры, поля, метки, паттерны, пороги, правила проверки и LLM-примеры.
+            В коде — ноль изменений.
+          </div>
+        </div>
+
+        <div class="about-card">
+          <div class="about-icon">🎯</div>
+          <div class="about-title">Ссылки на источники</div>
+          <div class="about-text">
+            Каждый ответ содержит источники: <code>field:student_name</code> для полей,
+            <code>rule:3.1</code> для пунктов Положения. Если ответа нет — сервис честно скажет.
+          </div>
+        </div>
+      </div>
+
+      <div class="about-footer">
+        <div class="about-footer-line">Версия 1.0</div>
+        <div class="about-footer-line small">Все данные в примерах вымышлены. Документы не имеют юридической силы.</div>
+      </div>
     </div>
   </section>
 </main>
 
-<script src="/static/app.js"></script>
+<script src="/static/app.js?v=9"></script>
 </body>
 </html>

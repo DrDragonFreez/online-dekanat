@@ -6,6 +6,11 @@ from app.config import settings
 from app.core.service import process_full
 from app.schemas import AnalyzeResponse, DocType
 router = APIRouter(prefix="/api/document", tags=["document"])
+@router.get("/types")
+def list_types():
+    from app.core.config_loader import all_types, all_titles
+    titles = all_titles()
+    return [{"value": t, "title": titles.get(t, t)} for t in all_types()]
 @router.post("/analyze", response_model=AnalyzeResponse)
 async def analyze(
     file: UploadFile = File(...),

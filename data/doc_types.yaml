@@ -152,3 +152,90 @@ internship_certificate:
       flag: signature_present
     rule:5.3:
       flag: seal_present
+transfer_certificate:
+  title: "Справка о переводе"
+  anchors:
+    - "СПРАВКА\\s+О\\s+ПЕРЕВОДЕ"
+    - "Сведения\\s+о\\s+переводе"
+  fields_order:
+    - student_name
+    - from_university
+    - to_university
+    - program
+    - transfer_date
+    - document_number
+    - issue_date
+    - signature_present
+    - seal_present
+  text_fields:
+    - student_name
+    - from_university
+    - to_university
+    - program
+    - transfer_date
+    - document_number
+    - issue_date
+  date_fields:
+    - transfer_date
+    - issue_date
+  name_fields:
+    - student_name
+  labels:
+    student_name: "ФИО студента"
+    from_university: "Откуда переводится"
+    to_university: "Куда переводится"
+    program: "Направление подготовки"
+    transfer_date: "Дата перевода"
+    document_number: "Номер справки"
+    issue_date: "Дата выдачи"
+  patterns:
+    student_name:
+      - "ФИО\\s+студент[а-я]*\\s*[:\\-]\\s*([А-ЯЁ][а-яё]+(?:-[А-ЯЁ][а-яё]+)?(?:\\s+[А-ЯЁ][а-яё]+(?:-[А-ЯЁ][а-яё]+)?){1,2})"
+    from_university:
+      - "Откуда\\s+переводится\\s*[:\\-]\\s*(.+?)(?:\\n|$)"
+    to_university:
+      - "Куда\\s+переводится\\s*[:\\-]\\s*(.+?)(?:\\n|$)"
+    transfer_date:
+      - "Дата\\s+перевода\\s*[:\\-]\\s*(.+?)(?:\\n|$)"
+    document_number:
+      - "Номер\\s+справки\\s*[:\\-]\\s*([А-ЯЁA-Z0-9\\-/]+)"
+    issue_date:
+      - "Дата\\s+выдачи\\s*[:\\-]\\s*(.+?)(?:\\n|$)"
+  marks:
+    sig_threshold: 500
+    seal_threshold: 1500
+  llm:
+    fields:
+      - student_name
+      - from_university
+      - to_university
+      - program
+      - transfer_date
+      - document_number
+      - issue_date
+    fields_description:
+      student_name: "ФИО студента полностью в именительном падеже"
+      from_university: "полное название учебного заведения, откуда переводится студент"
+      to_university: "полное название учебного заведения, куда переводится студент"
+      program: "направление подготовки или специальность"
+      transfer_date: "дата перевода в формате YYYY-MM-DD"
+      document_number: "номер справки"
+      issue_date: "дата выдачи справки в формате YYYY-MM-DD"
+    few_shot: |
+      ПРИМЕР 1. Полностью заполненная справка.
+      Текст: "СПРАВКА О ПЕРЕВОДЕ. ФИО студента: Иванов Иван Иванович. Откуда переводится: Учебный университет «Меридиан». Куда переводится: Учебная академия «Горизонт». Направление подготовки: 38.03.01 Экономика. Дата перевода: 01.09.2026. Номер справки: ПР-777. Дата выдачи: 15.08.2026."
+      Ответ: {"student_name": "Иванов Иван Иванович", "from_university": "Учебный университет «Меридиан»", "to_university": "Учебная академия «Горизонт»", "program": "38.03.01 Экономика", "transfer_date": "2026-09-01", "document_number": "ПР-777", "issue_date": "2026-08-15"}
+  required:
+    rule:7.1:
+      fields:
+        - student_name
+        - from_university
+        - to_university
+        - program
+        - transfer_date
+        - document_number
+        - issue_date
+    rule:7.2:
+      flag: signature_present
+    rule:7.3:
+      flag: seal_present
